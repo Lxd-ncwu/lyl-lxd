@@ -33,12 +33,15 @@ export default {
       staticMenuInactive: false,
       overlayMenuActive: false,
       mobileMenuActive: false,
+      //侧边栏上的文字显示
       menu: [
         {
-          label: 'Home',
-          items: [{
-            label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'
-          }]
+          label: '主页',
+          items: [
+            {
+              label: '主页', icon: 'pi pi-fw pi-home', to: '/'
+            }
+          ]
         },
         {
           label: 'Menu Hierarchy', icon: 'pi pi-fw pi-search',
@@ -96,7 +99,6 @@ export default {
             {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/chart'},
           ]
         },
-
         {
           label: 'Pages', icon: 'pi pi-fw pi-clone',
           items: [
