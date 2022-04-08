@@ -66,22 +66,24 @@ export default {
                 },
               ]
             },
+              //入库构想
             {
-              label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
+              label: '入库管理', icon: 'pi pi-fw pi-bookmark',
               items: [
                 {
-                  label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
+                  label: '仓库管理', icon: 'pi pi-fw pi-bookmark',
                   items: [
-                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark'},
-                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark'},
-                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '总库定义', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '仓库定义', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '库区定义', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '货架定义', icon: 'pi pi-fw pi-bookmark'},
                   ]
                 },
                 {
-                  label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
+                  label: '物资管理', icon: 'pi pi-fw pi-bookmark',
                   items: [
-                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark'},
-                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-bookmark'}
+                    {label: '物资入库', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '入库详情', icon: 'pi pi-fw pi-bookmark'}
                   ]
                 }
               ]
