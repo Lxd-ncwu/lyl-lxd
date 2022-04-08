@@ -7,7 +7,6 @@
                     <div class="text-center mb-5">
                         <img src="layout/images/avatar.png" alt="Image" height="50" class="mb-3">
                         <div class="text-900 text-3xl font-medium mb-3">应急物资管理系统</div>
-                        <span class="text-600 font-medium">登录以继续</span>
                     </div>
                 
                     <div class="w-full md:w-10 mx-auto">

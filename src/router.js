@@ -49,11 +49,6 @@ const routes = [
                 component: () => import('./pages/CrudDemo.vue')
             },
             {
-                path: '/empty',
-                name: 'empty',
-                component: () => import('./components/EmptyPage.vue')
-            },
-            {
                 path: '/documentation',
                 name: 'documentation',
                 component: () => import('./components/Documentation.vue')

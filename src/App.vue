@@ -44,7 +44,7 @@ export default {
           ]
         },
         {
-          label: 'Menu Hierarchy', icon: 'pi pi-fw pi-search',
+          label: '菜单项效果', icon: 'pi pi-fw pi-search',
           items: [
             {
               label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
@@ -89,7 +89,7 @@ export default {
           ]
         },
         {
-          label: 'UI Components', icon: 'pi pi-fw pi-sitemap',
+          label: '常用UI组件', icon: 'pi pi-fw pi-sitemap',
           items: [
             {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
             {label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
@@ -100,14 +100,13 @@ export default {
           ]
         },
         {
-          label: 'Pages', icon: 'pi pi-fw pi-clone',
+          label: '常用页面', icon: 'pi pi-fw pi-clone',
           items: [
             {label: 'Crud', icon: 'pi pi-fw pi-user-edit', to: '/crud'},
-            {label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login'},
-            {label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error'},
-            {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
-            {label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'},
-            {label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty'},
+            {label: '登录页面', icon: 'pi pi-fw pi-sign-in', to: '/login'},
+            {label: '500错误', icon: 'pi pi-fw pi-times-circle', to: '/error'},
+            {label: '404路径错误', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound'},
+            {label: '403拒绝访问', icon: 'pi pi-fw pi-lock', to: '/access'},
           ]
         }
       ]
