@@ -1,19 +1,31 @@
 <template>
   <div class="block-section">
     <div class="block-header">
-            <span class="block-title">
-                <span>{{ header }}</span>
-                <span class="badge-new" v-if="recent">New</span>
-            </span>
+      <span class="block-title">
+        <span>{{ header }}</span>
+        <span class="badge-new" v-if="recent">New</span>
+      </span>
       <div class="block-actions">
-        <a tabindex="0" :class="{'block-action-active': blockView === BlockView.PREVIEW}"
-           @click="activateView($event, BlockView.PREVIEW)"><span>Preview</span></a>
-        <a :tabindex="'0'" :class="{'block-action-active': blockView === BlockView.CODE}"
-           @click="activateView($event, BlockView.CODE)">
+        <a
+          tabindex="0"
+          :class="{ 'block-action-active': blockView === BlockView.PREVIEW }"
+          @click="activateView($event, BlockView.PREVIEW)"
+          ><span>Preview</span></a
+        >
+        <a
+          :tabindex="'0'"
+          :class="{ 'block-action-active': blockView === BlockView.CODE }"
+          @click="activateView($event, BlockView.CODE)"
+        >
           <span>Code</span>
         </a>
-        <a :tabindex="0" class="block-action-copy" @click="copyCode($event)"
-           v-tooltip.focus.bottom="{ value: 'Copied to clipboard' }"><i class="pi pi-copy"></i></a>
+        <a
+          :tabindex="0"
+          class="block-action-copy"
+          @click="copyCode($event)"
+          v-tooltip.focus.bottom="{ value: 'Copied to clipboard' }"
+          ><i class="pi pi-copy"></i
+        ></a>
       </div>
     </div>
     <div class="block-content">
@@ -33,7 +45,7 @@
 
 <script>
 export default {
-  name:'BlockViewer',
+  name: "BlockViewer",
   props: {
     header: {
       type: String,
@@ -53,17 +65,17 @@ export default {
         PREVIEW: 0,
         CODE: 1
       },
-      blockView: 0,
+      blockView: 0
     }
   },
   methods: {
     activateView(event, blockView) {
-      this.blockView = blockView;
-      event.preventDefault();
+      this.blockView = blockView
+      event.preventDefault()
     },
     async copyCode(event) {
-      await navigator.clipboard.writeText(this.code);
-      event.preventDefault();
+      await navigator.clipboard.writeText(this.code)
+      event.preventDefault()
     }
   }
 }
@@ -92,12 +104,12 @@ export default {
 
     .badge-free {
       border-radius: 4px;
-      padding: .25rem .5rem;
+      padding: 0.25rem 0.5rem;
       background-color: var(--orange-500);
       color: white;
       margin-left: 1rem;
       font-weight: 700;
-      font-size: .875rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -111,12 +123,12 @@ export default {
     a {
       display: flex;
       align-items: center;
-      margin-right: .75rem;
-      padding: .5rem 1rem;
+      margin-right: 0.75rem;
+      padding: 0.5rem 1rem;
       border-radius: 4px;
       font-weight: 600;
       border: 1px solid transparent;
-      transition: background-color .2s;
+      transition: background-color 0.2s;
       cursor: pointer;
 
       &:last-child {
@@ -140,12 +152,12 @@ export default {
       }
 
       &.block-action-disabled {
-        opacity: .6;
+        opacity: 0.6;
         cursor: auto !important;
       }
 
       i {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -163,7 +175,8 @@ export default {
 pre[class*="language-"] {
   margin: 0 !important;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     display: none !important;
   }
 
@@ -179,16 +192,16 @@ pre[class*="language-"] {
     .token {
       &.tag,
       &.keyword {
-        color: #2196F3 !important;
+        color: #2196f3 !important;
       }
 
       &.attr-name,
       &.attr-string {
-        color: #2196F3 !important;
+        color: #2196f3 !important;
       }
 
       &.attr-value {
-        color: #4CAF50 !important;
+        color: #4caf50 !important;
       }
 
       &.punctuation {
