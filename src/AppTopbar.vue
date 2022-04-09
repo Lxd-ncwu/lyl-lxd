@@ -49,10 +49,10 @@ export default {
   //方法加个备注？
   methods: {
     onMenuToggle(event) {
-      this.$emit('menu-toggle', event);
+      this.$emit('putInStorage-toggle', event);
     },
     onTopbarMenuToggle(event) {
-      this.$emit('topbar-menu-toggle', event);
+      this.$emit('topbar-putInStorage-toggle', event);
     },
     topbarImage() {
       return this.$appState.darkTheme ? 'images/logo-white.svg' : 'images/logo-dark.svg';

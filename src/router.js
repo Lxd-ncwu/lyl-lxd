@@ -37,7 +37,26 @@ const routes = [
                 name: 'table',
                 component: () => import('./components/TableDemo.vue')
             },
-            
+            {
+                path: '/esManage',
+                name: 'esManage',
+                component: () => import('./components/putInStorage/EsManage.vue')
+            },
+            {
+                path: '/essManage',
+                name: 'essManage',
+                component: () => import('./components/putInStorage/EssManage.vue')
+            },
+            {
+                path: '/esssManage',
+                name: 'esssManage',
+                component: () => import('./components/putInStorage/EsssManage.vue')
+            },
+            {
+                path: '/essssManage',
+                name: 'essssManage',
+                component: () => import('./components/putInStorage/EssssManage.vue')
+            },
             {
                 path: '/chart',
                 name: 'chart',
