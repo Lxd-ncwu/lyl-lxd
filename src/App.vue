@@ -66,17 +66,17 @@ export default {
                 },
               ]
             },
-              //入库构想
+            //入库构想
             {
               label: '入库管理', icon: 'pi pi-fw pi-bookmark',
               items: [
                 {
                   label: '仓库管理', icon: 'pi pi-fw pi-bookmark',
                   items: [
-                    {label: '总库定义', icon: 'pi pi-fw pi-bookmark'},
-                    {label: '仓库定义', icon: 'pi pi-fw pi-bookmark'},
-                    {label: '库区定义', icon: 'pi pi-fw pi-bookmark'},
-                    {label: '货架定义', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '总库定义', icon: 'pi pi-fw pi-bookmark', to: '/esManage'},
+                    {label: '仓库定义', icon: 'pi pi-fw pi-bookmark', to: '/essManage'},
+                    {label: '库区定义', icon: 'pi pi-fw pi-bookmark', to: '/esssManage'},
+                    {label: '货架定义', icon: 'pi pi-fw pi-bookmark', to: '/essssManage'},
                   ]
                 },
                 {
