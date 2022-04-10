@@ -49,6 +49,26 @@ const routes = [
         component: () => import("@/pages/CrudDemo.vue")
       },
       {
+        path: "/esManage",
+        name: "esManage",
+        component: () => import("@/components/putInStorage/EsManage.vue")
+      },
+      {
+        path: "/essManage",
+        name: "essManage",
+        component: () => import("@/components/putInStorage/EssManage.vue")
+      },
+      {
+        path: "/esssManage",
+        name: "esssManage",
+        component: () => import("@/components/putInStorage/EsssManage.vue")
+      },
+      {
+        path: "/essssManage",
+        name: "essssManage",
+        component: () => import("@/components/putInStorage/EssssManage.vue")
+      },
+      {
         path: "/documentation",
         name: "documentation",
         component: () => import("@/components/Documentation.vue")
