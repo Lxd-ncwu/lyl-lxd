@@ -7,13 +7,13 @@
           <template v-slot:start>
             <div class="my-2">
               <Button
-                label="New"
+                label="新建"
                 icon="pi pi-plus"
                 class="p-button-success mr-2"
                 @click="openNew"
               />
               <Button
-                label="Delete"
+                label="删除"
                 icon="pi pi-trash"
                 class="p-button-danger"
                 @click="confirmDeleteSelected"
@@ -27,12 +27,12 @@
               mode="basic"
               accept="image/*"
               :maxFileSize="1000000"
-              label="Import"
-              chooseLabel="Import"
+              label="导入"
+              chooseLabel="导入"
               class="mr-2 inline-block"
             />
             <Button
-              label="Export"
+              label="导出"
               icon="pi pi-upload"
               class="p-button-help"
               @click="exportCSV($event)"
@@ -57,7 +57,7 @@
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">Manage Products</h5>
+              <h5 class="m-0">总库定义</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters['global'].value" placeholder="Search..." />
