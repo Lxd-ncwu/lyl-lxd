@@ -91,6 +91,65 @@ export default {
           ]
         },
         {
+          label: '采购模块所需', icon: 'pi pi-fw pi-search',
+          items: [
+            { 
+              label: '后台管理(仅管理员可见)', icon: 'pi pi-fw pi-bookmark',
+              items: [
+                {
+                  label: '采购管理', icon: 'pi pi-fw pi-bookmark',
+                  items: [
+                    {label: '订单审核', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '订单查询', icon: 'pi pi-fw pi-bookmark'},
+                  ]
+                },
+                {
+                  label: '用户管理', icon: 'pi pi-fw pi-bookmark',
+                  items: [
+                    {label: '用户信息查询', icon: 'pi pi-fw pi-bookmark'},
+                    {label: '添加用户', icon: 'pi pi-fw pi-bookmark'},
+                  ]
+                },
+                {
+                  label: '供应商管理', icon: 'pi pi-fw pi-bookmark',
+                  items: [
+                    {label: '添加供应商', icon: 'pi pi-fw pi-bookmark'},
+                  ]
+                },
+              ]
+            },
+            { 
+              label: '仓库信息', icon: 'pi pi-fw pi-bookmark',
+              items: [
+                {label: '逻辑库信息', icon: 'pi pi-fw pi-bookmark'},
+                {label: '实体库信息', icon: 'pi pi-fw pi-bookmark'},
+                {label: '分库区信息', icon: 'pi pi-fw pi-bookmark'},
+              ]
+            },
+            { 
+              label: '物资信息', icon: 'pi pi-fw pi-bookmark',
+              items: [
+                {label: '逻辑库物资', icon: 'pi pi-fw pi-bookmark'},
+                {label: '实体库物资', icon: 'pi pi-fw pi-bookmark'},
+                {label: '分库区物资', icon: 'pi pi-fw pi-bookmark'},
+              ]
+            },
+            { 
+              label: '物资采购', icon: 'pi pi-fw pi-bookmark',
+              items: [
+                {label: '生成采购订单', icon: 'pi pi-fw pi-bookmark'},
+                {label: '采购订单查询', icon: 'pi pi-fw pi-bookmark'},
+              ]
+            },
+            { 
+              label: '其他信息', icon: 'pi pi-fw pi-bookmark',
+              items: [
+                {label: '供应商信息查询', icon: 'pi pi-fw pi-bookmark'},
+              ]
+            }
+          ]
+        },
+        {
           label: '常用UI组件', icon: 'pi pi-fw pi-sitemap',
           items: [
             {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout'},
