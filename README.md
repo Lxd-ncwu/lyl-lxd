@@ -1,29 +1,5 @@
-# lyl-lxd-zxl
-
-## Project setup
-
+## 注意事项
+### 1 交代码之前，务必运行以下代码进行格式化
 ```
-npm install
+npm run prettier
 ```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
