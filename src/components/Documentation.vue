@@ -45,7 +45,6 @@ npm run serve
 "npm run test:unit": Runs the tests.
 
 </code></pre>
-
         <h5>Structure</h5>
         <p>
           Sakai consists of 2 main parts; the application layout and the resources.

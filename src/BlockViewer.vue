@@ -174,7 +174,6 @@ export default {
 
 pre[class*="language-"] {
   margin: 0 !important;
-
   &:before,
   &:after {
     display: none !important;

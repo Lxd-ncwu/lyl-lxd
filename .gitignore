@@ -1,7 +1,22 @@
 .DS_Store
 node_modules
 /dist
+<<<<<<< HEAD
 
+=======
+/resources
+/components
+package-lock.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+>>>>>>> 40f5a78fdcc3878c3db2f1adebd4fbd08bfc263e
 
 # local env files
 .env.local
@@ -11,7 +26,10 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 pnpm-debug.log*
+=======
+>>>>>>> 40f5a78fdcc3878c3db2f1adebd4fbd08bfc263e
 
 # Editor directories and files
 .idea
@@ -20,4 +38,9 @@ pnpm-debug.log*
 *.ntvs*
 *.njsproj
 *.sln
+<<<<<<< HEAD
 *.sw?
+=======
+*.sw*
+
+>>>>>>> 40f5a78fdcc3878c3db2f1adebd4fbd08bfc263e
