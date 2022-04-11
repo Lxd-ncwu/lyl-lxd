@@ -7,13 +7,13 @@
           <template v-slot:start>
             <div class="my-2">
               <Button
-                label="New"
+                label="新建"
                 icon="pi pi-plus"
                 class="p-button-success mr-2"
                 @click="openNew"
               />
               <Button
-                label="Delete"
+                label="删除"
                 icon="pi pi-trash"
                 class="p-button-danger"
                 @click="confirmDeleteSelected"
@@ -27,12 +27,12 @@
               mode="basic"
               accept="image/*"
               :maxFileSize="1000000"
-              label="Import"
-              chooseLabel="Import"
+              label="导入"
+              chooseLabel="导入"
               class="mr-2 inline-block"
             />
             <Button
-              label="Export"
+              label="导出"
               icon="pi pi-upload"
               class="p-button-help"
               @click="exportCSV($event)"
@@ -57,7 +57,7 @@
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">Manage Products</h5>
+              <h5 class="m-0">物资库管理</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters['global'].value" placeholder="Search..." />
@@ -68,7 +68,7 @@
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
             field="code"
-            header="Code"
+            header="编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -79,7 +79,7 @@
           </Column>
           <Column
             field="name"
-            header="Name"
+            header="总库编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -88,20 +88,9 @@
               {{ slotProps.data.name }}
             </template>
           </Column>
-          <Column header="Image" headerStyle="width:14%; min-width:10rem;">
-            <template #body="slotProps">
-              <span class="p-column-title">Image</span>
-              <img
-                :src="'images/product/' + slotProps.data.image"
-                :alt="slotProps.data.image"
-                class="shadow-2"
-                width="100"
-              />
-            </template>
-          </Column>
           <Column
             field="price"
-            header="Price"
+            header="位置"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -112,7 +101,7 @@
           </Column>
           <Column
             field="category"
-            header="Category"
+            header="用途"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -123,7 +112,29 @@
           </Column>
           <Column
             field="rating"
-            header="Reviews"
+            header="面积"
+            :sortable="true"
+            headerStyle="width:14%; min-width:10rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">Rating</span>
+              <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
+            </template>
+          </Column>
+          <Column
+            field="rating"
+            header="层数"
+            :sortable="true"
+            headerStyle="width:14%; min-width:10rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">Rating</span>
+              <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
+            </template>
+          </Column>
+          <Column
+            field="rating"
+            header="库区数量"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -134,7 +145,7 @@
           </Column>
           <Column
             field="inventoryStatus"
-            header="Status"
+            header="状态"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
