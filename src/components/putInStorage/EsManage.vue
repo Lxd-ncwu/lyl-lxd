@@ -7,13 +7,13 @@
           <template v-slot:start>
             <div class="my-2">
               <Button
-                label="New"
+                label="新建"
                 icon="pi pi-plus"
                 class="p-button-success mr-2"
                 @click="openNew"
               />
               <Button
-                label="Delete"
+                label="删除"
                 icon="pi pi-trash"
                 class="p-button-danger"
                 @click="confirmDeleteSelected"
@@ -27,12 +27,12 @@
               mode="basic"
               accept="image/*"
               :maxFileSize="1000000"
-              label="Import"
-              chooseLabel="Import"
+              label="导入"
+              chooseLabel="导入"
               class="mr-2 inline-block"
             />
             <Button
-              label="Export"
+              label="导出"
               icon="pi pi-upload"
               class="p-button-help"
               @click="exportCSV($event)"
@@ -57,7 +57,7 @@
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">Manage Products</h5>
+              <h5 class="m-0">总库定义</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters['global'].value" placeholder="Search..." />
@@ -68,7 +68,7 @@
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
             field="code"
-            header="Code"
+            header="编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -79,7 +79,7 @@
           </Column>
           <Column
             field="name"
-            header="Name"
+            header="位置"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -88,20 +88,9 @@
               {{ slotProps.data.name }}
             </template>
           </Column>
-          <Column header="Image" headerStyle="width:14%; min-width:10rem;">
-            <template #body="slotProps">
-              <span class="p-column-title">Image</span>
-              <img
-                :src="'images/product/' + slotProps.data.image"
-                :alt="slotProps.data.image"
-                class="shadow-2"
-                width="100"
-              />
-            </template>
-          </Column>
           <Column
             field="price"
-            header="Price"
+            header="类别"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -112,7 +101,7 @@
           </Column>
           <Column
             field="category"
-            header="Category"
+            header="物资库数量"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -123,18 +112,29 @@
           </Column>
           <Column
             field="rating"
-            header="Reviews"
+            header="库外区数量"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
               <span class="p-column-title">Rating</span>
-              <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
+              {{ formatCurrency(slotProps.data.category) }}
+            </template>
+          </Column>
+          <Column
+            field="rating"
+            header="简介"
+            :sortable="true"
+            headerStyle="width:14%; min-width:10rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">Rating</span>
+              {{ formatCurrency(slotProps.data.category) }}
             </template>
           </Column>
           <Column
             field="inventoryStatus"
-            header="Status"
+            header="状态"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -170,27 +170,42 @@
         <Dialog
           v-model:visible="productDialog"
           :style="{ width: '450px' }"
-          header="Product Details"
+          header="修改信息"
           :modal="true"
           class="p-fluid"
         >
-          <img
-            :src="'images/product/' + product.image"
-            :alt="product.image"
-            v-if="product.image"
-            width="150"
-            class="mt-0 mx-auto mb-5 block shadow-2"
-          />
           <div class="field">
-            <label for="name">Name</label>
+            <label for="code">编号</label>
             <InputText
-              id="name"
-              v-model.trim="product.name"
+              id="code"
+              v-model.trim="product.code"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.name }"
+              :class="{ 'p-invalid': submitted && !product.code }"
             />
-            <small class="p-invalid" v-if="submitted && !product.name">Name is required.</small>
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
+          </div>
+          <div class="field">
+            <label for="code">位置</label>
+            <InputText
+              id="location"
+              v-model.trim="product.code"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.code }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
+          </div>
+          <div class="field">
+            <label for="code">类别</label>
+            <InputText
+              id="category"
+              v-model.trim="product.code"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.code }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
           </div>
           <div class="field">
             <label for="description">Description</label>

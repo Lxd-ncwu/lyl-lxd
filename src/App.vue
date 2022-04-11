@@ -46,7 +46,7 @@ export default {
           ]
         },
         {
-          label: "菜单项效果",
+          label: "入库模块",
           icon: "pi pi-fw pi-search",
           items: [
             {
