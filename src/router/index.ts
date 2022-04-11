@@ -1,9 +1,17 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import App from "@/App.vue"
-
+import Login from "@/pages/Login.vue"
 const routes = [
   {
     path: "/",
+    redirect: "/login"
+  },
+  {
+    path: "/login",
+    component: Login
+  },
+  {
+    path: "/index",
     name: "app",
     component: App,
     children: [
