@@ -68,7 +68,7 @@
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
             field="code"
-            header="Code"
+            header="Code1"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
