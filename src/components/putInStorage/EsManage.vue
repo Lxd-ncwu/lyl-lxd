@@ -188,7 +188,7 @@
           <div class="field">
             <label for="code">位置</label>
             <InputText
-              id="code"
+              id="location"
               v-model.trim="product.code"
               required="true"
               autofocus
@@ -199,7 +199,7 @@
           <div class="field">
             <label for="code">类别</label>
             <InputText
-              id="code"
+              id="category"
               v-model.trim="product.code"
               required="true"
               autofocus
