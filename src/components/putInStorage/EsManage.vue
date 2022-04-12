@@ -21,23 +21,6 @@
               />
             </div>
           </template>
-
-          <template v-slot:end>
-            <FileUpload
-              mode="basic"
-              accept="image/*"
-              :maxFileSize="1000000"
-              label="导入"
-              chooseLabel="导入"
-              class="mr-2 inline-block"
-            />
-            <Button
-              label="导出"
-              icon="pi pi-upload"
-              class="p-button-help"
-              @click="exportCSV($event)"
-            />
-          </template>
         </Toolbar>
 
         <DataTable
@@ -168,7 +151,149 @@
         </DataTable>
 
         <Dialog
-          v-model:visible="productDialog"
+          v-model:visible="createProductDialog"
+          :style="{ width: '450px' }"
+          header="新建仓库"
+          :modal="true"
+          class="p-fluid"
+        >
+          <div class="field">
+            <label for="code">编号</label>
+            <InputText
+              id="code"
+              v-model.trim="product.code"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.code }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
+          </div>
+          <div class="field">
+            <label for="code">位置</label>
+            <InputText
+              id="location"
+              v-model.trim="product.code"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.code }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
+          </div>
+          <div class="field">
+            <label for="code">类别</label>
+            <InputText
+              id="category"
+              v-model.trim="product.code"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.code }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.name">编号不能为空</small>
+          </div>
+          <div class="field">
+            <label for="description">Description</label>
+            <Textarea
+              id="description"
+              v-model="product.description"
+              required="true"
+              rows="3"
+              cols="20"
+            />
+          </div>
+
+          <div class="field">
+            <label for="inventoryStatus" class="mb-3">Inventory Status</label>
+            <Dropdown
+              id="inventoryStatus"
+              v-model="product.inventoryStatus"
+              :options="statuses"
+              optionLabel="label"
+              placeholder="Select a Status"
+            >
+              <template #value="slotProps">
+                <div v-if="slotProps.value && slotProps.value.value">
+                  <span :class="'product-badge status-' + slotProps.value.value">{{
+                    slotProps.value.label
+                  }}</span>
+                </div>
+                <div v-else-if="slotProps.value && !slotProps.value.value">
+                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
+                    slotProps.value
+                  }}</span>
+                </div>
+                <span v-else>
+                  {{ slotProps.placeholder }}
+                </span>
+              </template>
+            </Dropdown>
+          </div>
+
+          <div class="field">
+            <label class="mb-3">Category</label>
+            <div class="formgrid grid">
+              <div class="field-radiobutton col-6">
+                <RadioButton
+                  id="category1"
+                  name="category"
+                  value="Accessories"
+                  v-model="product.category"
+                />
+                <label for="category1">Accessories</label>
+              </div>
+              <div class="field-radiobutton col-6">
+                <RadioButton
+                  id="category2"
+                  name="category"
+                  value="Clothing"
+                  v-model="product.category"
+                />
+                <label for="category2">Clothing</label>
+              </div>
+              <div class="field-radiobutton col-6">
+                <RadioButton
+                  id="category3"
+                  name="category"
+                  value="Electronics"
+                  v-model="product.category"
+                />
+                <label for="category3">Electronics</label>
+              </div>
+              <div class="field-radiobutton col-6">
+                <RadioButton
+                  id="category4"
+                  name="category"
+                  value="Fitness"
+                  v-model="product.category"
+                />
+                <label for="category4">Fitness</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="formgrid grid">
+            <div class="field col">
+              <label for="price">Price</label>
+              <InputNumber
+                id="price"
+                v-model="product.price"
+                mode="currency"
+                currency="USD"
+                locale="en-US"
+              />
+            </div>
+            <div class="field col">
+              <label for="quantity">Quantity</label>
+              <InputNumber id="quantity" v-model="product.quantity" integeronly />
+            </div>
+          </div>
+          <template #footer>
+            <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <Button label="保存" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
+          </template>
+        </Dialog>
+
+        <Dialog
+          v-model:visible="updateProductDialog"
           :style="{ width: '450px' }"
           header="修改信息"
           :modal="true"
@@ -304,8 +429,8 @@
             </div>
           </div>
           <template #footer>
-            <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
-            <Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
+            <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <Button label="保存" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
           </template>
         </Dialog>
 
@@ -317,8 +442,8 @@
         >
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-            <span v-if="product"
-              >Are you sure you want to delete <b>{{ product.name }}</b
+            <span v-if="product">
+              您确定要删除这一项吗？ <b>{{ product.name }}</b
               >?</span
             >
           </div>
@@ -341,7 +466,7 @@
         >
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-            <span v-if="product">Are you sure you want to delete the selected products?</span>
+            <span v-if="product"> 您确定要删除所选项吗？ </span>
           </div>
           <template #footer>
             <Button
@@ -372,7 +497,8 @@ export default {
   data() {
     return {
       products: null,
-      productDialog: false,
+      createProductDialog: false,
+      updateProductDialog: false,
       deleteProductDialog: false,
       deleteProductsDialog: false,
       product: {},
@@ -402,7 +528,7 @@ export default {
     openNew() {
       this.product = {}
       this.submitted = false
-      this.productDialog = true
+      this.createProductDialog = true
     },
     hideDialog() {
       this.productDialog = false
@@ -443,7 +569,7 @@ export default {
     },
     editProduct(product) {
       this.product = { ...product }
-      this.productDialog = true
+      this.updateProductDialog = true
     },
     confirmDeleteProduct(product) {
       this.product = product
