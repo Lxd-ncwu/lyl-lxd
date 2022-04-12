@@ -54,7 +54,7 @@
                 >忘记密码？</a
               >
             </div>
-            <Button label="登录" class="w-full p-3 text-xl"></Button>
+            <Button label="登录" class="w-full p-3 text-xl" @click="login"></Button>
           </div>
         </div>
       </div>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import ylRequest from "@/service"
 export default {
   data() {
     return {
@@ -75,6 +76,18 @@ export default {
     logoColor() {
       if (this.$appState.darkTheme) return "white"
       return "dark"
+    }
+  },
+  methods: {
+    login() {
+      const data = ylRequest.request({
+        url: "/login/do_login",
+        method: "POST"
+      })
+      const code = data.code
+      if (code === 0) {
+        this.$router.push("/index")
+      }
     }
   }
 }
