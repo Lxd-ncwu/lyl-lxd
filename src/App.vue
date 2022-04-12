@@ -134,9 +134,9 @@ export default {
               label: "仓库信息",
               icon: "pi pi-fw pi-bookmark",
               items: [
-                { label: "逻辑库信息", icon: "pi pi-fw pi-bookmark" },
-                { label: "实体库信息", icon: "pi pi-fw pi-bookmark" },
-                { label: "分库区信息", icon: "pi pi-fw pi-bookmark" }
+                { label: "逻辑库信息", icon: "pi pi-fw pi-bookmark", to: "/storage" },
+                { label: "实体库信息", icon: "pi pi-fw pi-bookmark", to: "/storeRoom" },
+                { label: "分库区信息", icon: "pi pi-fw pi-bookmark", to: "/spaceStore" }
               ]
             },
             {

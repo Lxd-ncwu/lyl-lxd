@@ -77,6 +77,21 @@ const routes = [
         component: () => import("@/components/putInStorage/EssssManage.vue")
       },
       {
+        path: "/storage",
+        name: "storage",
+        component: () => import("@/components/purchaseStorage/Storage.vue")
+      },
+      {
+        path: "/storeRoom",
+        name: "storeroom",
+        component: () => import("@/components/purchaseStorage/storeRoom.vue")
+      },
+      {
+        path: "/spaceStore",
+        name: "spaceStore",
+        component: () => import("@/components/purchaseStorage/spaceStore.vue")
+      },
+      {
         path: "/documentation",
         name: "documentation",
         component: () => import("@/components/Documentation.vue")
