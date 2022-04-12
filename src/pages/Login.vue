@@ -79,8 +79,8 @@ export default {
     }
   },
   methods: {
-    login() {
-      const data = ylRequest.request({
+    async login() {
+      const data = await ylRequest.request({
         url: "/login/do_login",
         method: "POST",
         data: {
@@ -89,7 +89,7 @@ export default {
         }
       })
       const code = data.code
-      console.log(data)
+      // console.log(data)
       if (code === 0) {
         this.$router.push("/index")
       }
