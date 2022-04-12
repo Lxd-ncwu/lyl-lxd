@@ -82,9 +82,14 @@ export default {
     login() {
       const data = ylRequest.request({
         url: "/login/do_login",
-        method: "POST"
+        method: "POST",
+        data: {
+          phone: this.phone,
+          password: this.password
+        }
       })
       const code = data.code
+      console.log(data)
       if (code === 0) {
         this.$router.push("/index")
       }
