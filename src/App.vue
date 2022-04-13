@@ -191,16 +191,17 @@ export default {
       ]
     }
   },
-  async beforeRouteEnter(to, from) {
-    const data = await ylRequest.request({
-      url: "/check_token",
-      method: "GET"
-    })
-    const code = data.code
-    if (code !== 0) {
-      return "/notoken"
-    }
-  },
+  // 为方便调试，关闭路由导航守卫
+  // async beforeRouteEnter() {
+  //   const data = await ylRequest.request({
+  //     url: "/check_token",
+  //     method: "GET"
+  //   })
+  //   const code = data.code
+  //   if (code !== 0) {
+  //     return "/notoken"
+  //   }
+  // },
   watch: {
     $route() {
       this.menuActive = false
