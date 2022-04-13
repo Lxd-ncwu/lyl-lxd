@@ -94,21 +94,21 @@ export default {
     }
   },
   methods: {
-    async login() {
-      const data = await ylRequest.request({
-        url: "/login/do_login",
-        method: "POST",
-        data: {
-          phone: this.phone,
-          password: this.password
-        }
-      })
-      const code = data.code
-      // console.log(data)
-      if (code === 0) {
-        this.$router.push("/index")
-      }
-    }
+    // async login() {
+    //   const data = await ylRequest.request({
+    //     url: "/login/do_login",
+    //     method: "POST",
+    //     data: {
+    //       phone: this.phone,
+    //       password: this.password
+    //     }
+    //   })
+    //   const code = data.code
+    //   // console.log(data)
+    //   if (code === 0) {
+    //     this.$router.push("/index")
+    //   }
+    // }
   }
 }
 </script>
