@@ -79,17 +79,22 @@ const routes = [
       {
         path: "/storage",
         name: "storage",
-        component: () => import("@/components/purchaseStorage/Storage.vue")
+        component: () => import("@/components/purchaseInfo/Storage.vue")
       },
       {
         path: "/storeRoom",
         name: "storeroom",
-        component: () => import("@/components/purchaseStorage/storeRoom.vue")
+        component: () => import("@/components/purchaseInfo/storeRoom.vue")
       },
       {
         path: "/spaceStore",
         name: "spaceStore",
-        component: () => import("@/components/purchaseStorage/spaceStore.vue")
+        component: () => import("@/components/purchaseInfo/spaceStore.vue")
+      },
+      {
+        path: "/userList",
+        name: "userList",
+        component: () => import("@/components/purchaseInfo/userList.vue")
       },
       {
         path: "/documentation",

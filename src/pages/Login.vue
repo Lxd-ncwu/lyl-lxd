@@ -86,17 +86,12 @@ export default {
         data: {
           phone: this.phone,
           password: this.password
-        }
+        },
+        withCredentials: true
       })
       const code = data.code
-<<<<<<< HEAD
-      console.log(data)
-      console.log(code)
-      if (code == 0) {
-=======
       // console.log(data)
       if (code === 0) {
->>>>>>> 95853c4f8da15ae298a7a912a5f85644ce1bc581
         this.$router.push("/index")
       }
     }

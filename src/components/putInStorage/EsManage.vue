@@ -525,11 +525,6 @@ export default {
       if (value) return value.toLocaleString("en-US", { style: "currency", currency: "USD" })
       return
     },
-    openNew() {
-      this.product = {}
-      this.submitted = false
-      this.createProductDialog = true
-    },
     hideDialog() {
       this.productDialog = false
       this.submitted = false

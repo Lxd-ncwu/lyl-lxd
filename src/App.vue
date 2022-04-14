@@ -117,11 +117,8 @@ export default {
                 },
                 {
                   label: "用户管理",
-                  icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "用户信息查询", icon: "pi pi-fw pi-bookmark" },
-                    { label: "添加用户", icon: "pi pi-fw pi-bookmark" }
-                  ]
+                  icon: "pi pi-fw pi-bookmark ",
+                  to: "/userList"
                 },
                 {
                   label: "供应商管理",
