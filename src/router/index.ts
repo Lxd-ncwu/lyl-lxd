@@ -137,6 +137,11 @@ const routes = [
     path: "/access",
     name: "access",
     component: () => import("@/pages/Access.vue")
+  },
+  {
+    path: "/notoken",
+    name: "notoken",
+    component: () => import("@/pages/NoToken.vue")
   }
 ]
 

@@ -2,6 +2,7 @@
   <div
     class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
   >
+    <Toast />
     <div class="grid justify-content-center p-2 lg:p-0" style="min-width: 80%">
       <div
         class="col-12 xl:col-6"
@@ -64,12 +65,26 @@
 
 <script>
 import ylRequest from "@/service"
+import Toast from "primevue/toast"
 export default {
   data() {
     return {
       phone: "",
       password: "",
       checked: false
+    }
+  },
+  components: {
+    Toast
+  },
+  async beforeRouteEnter(to, from) {
+    const data = await ylRequest.request({
+      url: "/check_token",
+      method: "GET"
+    })
+    const code = data.code
+    if (code === 0) {
+      return "/index"
     }
   },
   computed: {
@@ -79,6 +94,7 @@ export default {
     }
   },
   methods: {
+<<<<<<< HEAD
     async login() {
       const data = await ylRequest.request({
         url: "/login/do_login",
@@ -95,6 +111,23 @@ export default {
         this.$router.push("/index")
       }
     }
+=======
+    // async login() {
+    //   const data = await ylRequest.request({
+    //     url: "/login/do_login",
+    //     method: "POST",
+    //     data: {
+    //       phone: this.phone,
+    //       password: this.password
+    //     }
+    //   })
+    //   const code = data.code
+    //   // console.log(data)
+    //   if (code === 0) {
+    //     this.$router.push("/index")
+    //   }
+    // }
+>>>>>>> a5cee14f6c8718fed0cd3fbbc4b7967a7a5366e3
   }
 }
 </script>

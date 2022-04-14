@@ -1,5 +1,6 @@
 <template>
   <div :class="containerClass" @click="onWrapperClick">
+    <Toast />
     <AppTopBar @menu-toggle="onMenuToggle" />
     <div class="layout-sidebar" @click="onSidebarClick">
       <AppMenu :model="menu" @menuitem-click="onMenuItemClick" />
@@ -24,7 +25,8 @@ import AppTopBar from "./AppTopbar.vue"
 import AppMenu from "./AppMenu.vue"
 import AppConfig from "./AppConfig.vue"
 import AppFooter from "./AppFooter.vue"
-
+import ylRequest from "@/service"
+import Toast from "primevue/toast"
 export default {
   emits: ["change-theme"],
   data() {
@@ -186,6 +188,17 @@ export default {
       ]
     }
   },
+  // 为方便调试，关闭路由导航守卫
+  // async beforeRouteEnter() {
+  //   const data = await ylRequest.request({
+  //     url: "/check_token",
+  //     method: "GET"
+  //   })
+  //   const code = data.code
+  //   if (code !== 0) {
+  //     return "/notoken"
+  //   }
+  // },
   watch: {
     $route() {
       this.menuActive = false
@@ -284,7 +297,8 @@ export default {
     AppTopBar: AppTopBar,
     AppMenu: AppMenu,
     AppConfig: AppConfig,
-    AppFooter: AppFooter
+    AppFooter: AppFooter,
+    Toast
   }
 }
 </script>
