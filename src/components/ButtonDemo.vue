@@ -64,12 +64,7 @@
           :model="items"
           class="p-button-success mr-2 mb-2"
         ></SplitButton>
-        <SplitButton
-          label="Save"
-          icon="pi pi-check"
-          :model="items"
-          class="p-button-info mr-2 mb-2"
-        ></SplitButton>
+        <SplitButton label="ni " icon="pi pi-check" :model="items"></SplitButton>
         <SplitButton
           label="Save"
           icon="pi pi-check"

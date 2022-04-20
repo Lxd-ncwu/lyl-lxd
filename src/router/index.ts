@@ -97,6 +97,61 @@ const routes = [
         component: () => import("@/components/purchaseInfo/userList.vue")
       },
       {
+        path: "/newProducter",
+        name: "newProducter",
+        component: () => import("@/components/purchaseInfo/newProducter.vue")
+      },
+      {
+        path: "/producerList",
+        name: "producerList",
+        component: () => import("@/components/purchaseInfo/producerList.vue")
+      },
+      {
+        path: "/storageMaterial",
+        name: "storageMaterial",
+        component: () => import("@/components/purchaseInfo/storageMaterial.vue")
+      },
+      {
+        path: "/storageRoomMaterial",
+        name: "storageRoomMaterial",
+        component: () => import("@/components/purchaseInfo/storageRoomMaterial.vue")
+      },
+      {
+        path: "/spaceMaterial",
+        name: "spaceMaterial",
+        component: () => import("@/components/purchaseInfo/spaceMaterial.vue")
+      },
+      {
+        path: "/materialList",
+        name: "materialList",
+        component: () => import("@/components/purchaseInfo/materialList.vue")
+      },
+      {
+        path: "/userOrderList",
+        name: "userOrderList",
+        component: () => import("@/components/purchaseInfo/userOrderList.vue")
+      },
+      {
+        path: "/rootOrderList",
+        name: "rootOrderList",
+        component: () => import("@/components/purchaseInfo/rootOrderList.vue")
+      },
+      {
+        path: "/checkOrder",
+        name: "checkOrder",
+        component: () => import("@/components/purchaseInfo/checkOrder.vue")
+      },
+      {
+        path: "/storageMaterialOrder",
+        name: "storageMaterialOrder",
+        component: () => import("@/components/purchaseInfo/storageMaterialOrder.vue")
+      },
+      {
+        path: "/newMaterialOrder",
+        name: "newMaterialOrder",
+        component: () => import("@/components/purchaseInfo/newMaterialOrder.vue")
+      },
+      {
         path: "/documentation",
         name: "documentation",
         component: () => import("@/components/Documentation.vue")

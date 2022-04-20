@@ -113,8 +113,8 @@ export default {
                   label: "采购管理",
                   icon: "pi pi-fw pi-bookmark",
                   items: [
-                    { label: "订单审核", icon: "pi pi-fw pi-bookmark" },
-                    { label: "订单查询", icon: "pi pi-fw pi-bookmark" }
+                    { label: "订单审核", icon: "pi pi-fw pi-bookmark", to: "checkOrder" },
+                    { label: "订单查询", icon: "pi pi-fw pi-bookmark", to: "rootOrderList" }
                   ]
                 },
                 {
@@ -123,9 +123,9 @@ export default {
                   to: "/userList"
                 },
                 {
-                  label: "供应商管理",
+                  label: "添加供应商",
                   icon: "pi pi-fw pi-bookmark",
-                  items: [{ label: "添加供应商", icon: "pi pi-fw pi-bookmark" }]
+                  to: "/newProducter"
                 }
               ]
             },
@@ -142,23 +142,29 @@ export default {
               label: "物资信息",
               icon: "pi pi-fw pi-bookmark",
               items: [
-                { label: "逻辑库物资", icon: "pi pi-fw pi-bookmark" },
-                { label: "实体库物资", icon: "pi pi-fw pi-bookmark" },
-                { label: "分库区物资", icon: "pi pi-fw pi-bookmark" }
+                { label: "物资属性", icon: "pi pi-fw pi-bookmark", to: "/materialList" },
+                { label: "逻辑库物资", icon: "pi pi-fw pi-bookmark", to: "/storageMaterial" },
+                { label: "实体库物资", icon: "pi pi-fw pi-bookmark", to: "/storageRoomMaterial" },
+                { label: "分库区物资", icon: "pi pi-fw pi-bookmark", to: "/spaceMaterial" }
               ]
             },
             {
               label: "物资采购",
               icon: "pi pi-fw pi-bookmark",
               items: [
-                { label: "生成采购订单", icon: "pi pi-fw pi-bookmark" },
-                { label: "采购订单查询", icon: "pi pi-fw pi-bookmark" }
+                {
+                  label: "现有物资采购",
+                  icon: "pi pi-fw pi-bookmark",
+                  to: "/storageMaterialOrder"
+                },
+                { label: "新物资采购", icon: "pi pi-fw pi-bookmark", to: "/newMaterialOrder" },
+                { label: "采购订单查询", icon: "pi pi-fw pi-bookmark", to: "/userOrderList" }
               ]
             },
             {
-              label: "其他信息",
+              label: "查看供应商信息",
               icon: "pi pi-fw pi-bookmark",
-              items: [{ label: "供应商信息查询", icon: "pi pi-fw pi-bookmark" }]
+              to: "/producerList"
             }
           ]
         },

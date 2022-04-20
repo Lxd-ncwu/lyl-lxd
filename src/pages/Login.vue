@@ -94,7 +94,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
     async login() {
       const data = await ylRequest.request({
         url: "/login/do_login",
@@ -111,23 +110,6 @@ export default {
         this.$router.push("/index")
       }
     }
-=======
-    // async login() {
-    //   const data = await ylRequest.request({
-    //     url: "/login/do_login",
-    //     method: "POST",
-    //     data: {
-    //       phone: this.phone,
-    //       password: this.password
-    //     }
-    //   })
-    //   const code = data.code
-    //   // console.log(data)
-    //   if (code === 0) {
-    //     this.$router.push("/index")
-    //   }
-    // }
->>>>>>> a5cee14f6c8718fed0cd3fbbc4b7967a7a5366e3
   }
 }
 </script>

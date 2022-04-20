@@ -158,7 +158,7 @@
               autofocus
               :class="{ 'p-invalid': submitted && !user.name }"
             />
-            <small class="p-invalid" v-if="submitted && !user.name">请输入姓名</small>
+            <small class="p-invalid" v-if="submitted && !epUser.name">请输入姓名</small>
           </div>
           <div class="field">
             <label for="phone">联系方式</label>
@@ -214,6 +214,19 @@ export default {
     console.log(data)
   },
   methods: {
+    checkPhone(phone) {
+      var reg = /^1[3|4|5|7|8][0-9]{9}$/
+      if (!reg.test(phone)) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "请输入正确的手机号",
+          life: 3000
+        })
+        return false
+      }
+      return true
+    },
     //导出为excel
     exportCSV() {
       this.$refs.dt.exportCSV()
@@ -258,6 +271,9 @@ export default {
       this.storage = data.data
     },
     async saveUser() {
+      if (this.checkPhone(this.user.phone) === false) {
+        return
+      }
       const data = await ylRequest.request({
         url: "/user/do_register",
         method: "POST",
