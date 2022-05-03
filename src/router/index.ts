@@ -77,6 +77,46 @@ const routes = [
         component: () => import("@/components/putInStorage/EssssManage.vue")
       },
       {
+        path: "/essssManage",
+        name: "essssManage",
+        component: () => import("@/components/putInStorage/EssssManage.vue")
+      },
+      {
+        path: "/materialType",
+        name: "materialType",
+        component: () => import("@/components/putInStorage/MaterialType.vue")
+      },
+      {
+        path: "/materialPackStyle",
+        name: "materialPackStyle",
+        component: () => import("@/components/putInStorage/MaterialPackStyle.vue")
+      },
+      {
+        path: "/materialAttribute",
+        name: "materialAttribute",
+        component: () => import("@/components/putInStorage/MaterialAttribute.vue")
+      },
+      {
+        path: "/materialEnter",
+        name: "materialEnter",
+        component: () => import("@/components/putInStorage/MaterialEnter.vue")
+      },
+      {
+        path: "/materialAccept",
+        name: "materialAccept",
+        component: () => import("@/components/putInStorage/MaterialAccept.vue")
+      },
+      {
+        path: "/entryList",
+        name: "entryList",
+        component: () => import("@/components/putInStorage/EntryList.vue")
+      },
+      {
+        path: "/rfid",
+        name: "rfid",
+        component: () => import("@/components/putInStorage/RFID.vue")
+      },
+      {
         path: "/storage",
         name: "storage",
         component: () => import("@/components/purchaseInfo/Storage.vue")

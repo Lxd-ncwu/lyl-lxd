@@ -49,7 +49,7 @@
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">货架管理</h5>
+              <h5 class="m-0">物资属性定义</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters['global'].value" placeholder="查找" />
@@ -59,136 +59,124 @@
 
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
-            field="esssNo"
-            header="货架编号"
+            field="emaNo"
+            header="编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">货架编号</span>
-              {{ slotProps.data.esssNo }}
+              <span class="p-column-title">编号</span>
+              {{ slotProps.data.emaNo }}
             </template>
           </Column>
           <Column
-            field="esNo"
-            header="物资库编号"
+            field="emaName"
+            header="品名"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">物资库编号</span>
-              {{ slotProps.data.esNo }}
+              <span class="p-column-title">品名</span>
+              {{ slotProps.data.emaName }}
             </template>
           </Column>
           <Column
-            field="essNo"
-            header="仓库编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">仓库编号</span>
-              {{ slotProps.data.essNo }}
-            </template>
-          </Column>
-          <Column
-            field="esssNo"
-            header="库区编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">库区编号</span>
-              {{ slotProps.data.esssNo }}
-            </template>
-          </Column>
-          <Column
-            field="essssSpecifications"
-            header="货架规格"
+            field="emaSpecifications"
+            header="规格"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">货架规格</span>
-              {{ slotProps.data.essssSpecifications }}
+              <span class="p-column-title">规格</span>
+              {{ slotProps.data.emaSpecifications }}
             </template>
           </Column>
           <Column
-            field="essssFloorFirst"
-            header="第一层编号"
+            field="emaProducer"
+            header="生产商"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第一层编号</span>
-              {{ slotProps.data.essssFloorFirst }}
+              <span class="p-column-title">生产商</span>
+              {{ slotProps.data.emaProducer }}
             </template>
           </Column>
           <Column
-            field="essssFloorSecond"
-            header="第二层编号"
+            field="emaSupplier"
+            header="提供者"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第二层编号</span>
-              {{ slotProps.data.essssFloorSecond }}
+              <span class="p-column-title">提供者</span>
+              {{ slotProps.data.emaSupplier }}
             </template>
           </Column>
           <Column
-            field="essssFloorThird"
-            header="第三层编号"
+            field="emaDateProduct"
+            header="生产日期"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第三层编号</span>
-              {{ slotProps.data.essssFloorThird }}
+              <span class="p-column-title">生产日期</span>
+              {{ formatDate(slotProps.data.emaDateProduct) }}
             </template>
           </Column>
           <Column
-            field="essssFloorFourth"
-            header="第四层编号"
+            field="emaShelfLife"
+            header="保质期"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第四层编号</span>
-              {{ slotProps.data.essssFloorFourth }}
+              <span class="p-column-title">保质期</span>
+              {{ slotProps.data.emaShelfLife }}
             </template>
           </Column>
           <Column
-            field="essssFloorFifth"
-            header="第五层编号"
+            field="emaMaintenanceCycle"
+            header="保养周期"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第五层编号</span>
-              {{ slotProps.data.essssFloorFifth }}
+              <span class="p-column-title">保养周期</span>
+              {{ slotProps.data.emaMaintenanceCycle }}
             </template>
           </Column>
-
           <Column
-            field="essssTimeValue"
+            field="emaIsReusable"
+            header="是否可循环利用"
+            :sortable="true"
+            headerStyle="width:14%; min-width:8rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">是否可循环利用</span>
+              {{ slotProps.data.emaIsReusable }}
+            </template>
+          </Column>
+          <Column
+            field="emaTimeValue"
             header="创建时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
               <span class="p-column-title">创建时间</span>
-              {{ slotProps.data.essssTimeValue }}
+              {{ slotProps.data.emaTimeValue }}
             </template>
           </Column>
           <Column
-            field="essssTs"
+            field="emaTs"
             header="修改时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
               <span class="p-column-title">修改时间</span>
-              {{ slotProps.data.essssTs }}
+              {{ slotProps.data.emaTs }}
             </template>
           </Column>
           <Column headerStyle="min-width:10rem;">
@@ -210,28 +198,102 @@
         <Dialog
           v-model:visible="createProductDialog"
           :style="{ width: '450px' }"
-          header="新建货架"
+          header="新建物资属性"
           :modal="true"
           class="p-fluid"
         >
           <div class="field">
-            <label for="essssNo">编号</label>
+            <label for="emaNo">编号</label>
             <InputText
-              id="esssNo"
-              v-model.trim="product.essssNo"
+              id="emaNo"
+              v-model.trim="product.emaNo"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssNo }"
+              :class="{ 'p-invalid': submitted && !product.emaNo }"
             />
-            <small class="p-invalid" v-if="submitted && !product.essssNo">编号不能为空</small>
+            <small class="p-invalid" v-if="submitted && !product.emaNo">编号不能为空</small>
           </div>
           <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
+            <label for="emaName">品名</label>
+            <InputText
+              id="emaName"
+              v-model.trim="product.emaName"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaName }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaName">品名</small>
+          </div>
+          <div class="field">
+            <label for="emaSpecifications">规格</label>
+            <InputText
+              id="emaSpecifications"
+              v-model.trim="product.emaSpecifications"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaSpecifications }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaSpecifications"
+              >规格不能为空</small
+            >
+          </div>
+          <div class="field">
+            <label for="emaProducer">生产商</label>
+            <InputText
+              id="emaProducer"
+              v-model.trim="product.emaProducer"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaProducer }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaProducer">生产商不能为空</small>
+          </div>
+          <div class="field">
+            <label for="emaSupplier">提供者</label>
+            <InputText
+              id="emaSupplier"
+              v-model.trim="product.emaSupplier"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaSupplier }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaSupplier">提供者不能为空</small>
+          </div>
+          <div class="field">
+            <label for="emaDateProduct">生产日期</label>
+            <Calendar
+              id="emaDateProduct"
+              v-model="product.emaDateProduct"
+              required="true"
+              class="p-invalid"
+              :showIcon="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaShelfLife">保质期</label>
+            <Listbox
+              id="emaShelfLife"
+              v-model="product.emaShelfLife"
+              :options="emaShelfLifes"
+              :filter="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaMaintenanceCycle">保养周期</label>
+            <Listbox
+              id="emaMaintenanceCycle"
+              v-model="product.emaMaintenanceCycle"
+              :options="emaMaintenanceCycles"
+              :filter="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaIsReusable" class="mb-3">是否可循环利用</label>
             <Dropdown
-              id="esNo"
-              v-model="product.esssNo"
-              :options="esssNo"
-              placeholder="请选择库区编号"
+              id="emaIsReusable"
+              v-model="product.emaIsReusable"
+              :options="emaIsReusables"
+              placeholder="是否可循环利用"
             >
               <template #value="slotProps">
                 <div v-if="slotProps.value && slotProps.value.value">
@@ -250,66 +312,7 @@
               </template>
             </Dropdown>
           </div>
-          <div class="field">
-            <label for="essssSpecifications">规格</label>
-            <InputText
-              id="essssSpecifications"
-              v-model.trim="product.essssSpecifications"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssSpecifications }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFirst">第一层编号</label>
-            <InputText
-              id="essssFloorFirst"
-              v-model.trim="product.essssFloorFirst"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFirst }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorSecond">第二层编号</label>
-            <InputText
-              id="essssFloorSecond"
-              v-model.trim="product.essssFloorSecond"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorSecond }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorThrid">第三层编号</label>
-            <InputText
-              id="essssFloorThrid"
-              v-model.trim="product.essssFloorThrid"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorThrid }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFourth">第四层编号</label>
-            <InputText
-              id="essssFloorFourth"
-              v-model.trim="product.essssFloorFourth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFourth }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFifth">第五层编号</label>
-            <InputText
-              id="essssFloorFifth"
-              v-model.trim="product.essssFloorFifth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFifth }"
-            />
-          </div>
+
           <template #footer>
             <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
             <Button label="保存" icon="pi pi-check" class="p-button-text" @click="addProduct" />
@@ -319,28 +322,102 @@
         <Dialog
           v-model:visible="updateProductDialog"
           :style="{ width: '450px' }"
-          header="更新货架"
+          header="修改信息"
           :modal="true"
           class="p-fluid"
         >
           <div class="field">
-            <label for="essssNo">编号</label>
+            <label for="emaNo">编号</label>
             <InputText
-              id="esssNo"
-              v-model.trim="product.essssNo"
+              id="emaNo"
+              v-model.trim="product.emaNo"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssNo }"
+              :class="{ 'p-invalid': submitted && !product.emaNo }"
             />
-            <small class="p-invalid" v-if="submitted && !product.essssNo">编号不能为空</small>
+            <small class="p-invalid" v-if="submitted && !product.emaNo">编号不能为空</small>
           </div>
           <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
+            <label for="emaName">品名</label>
+            <InputText
+              id="emaName"
+              v-model.trim="product.emaName"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaName }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaName">品名</small>
+          </div>
+          <div class="field">
+            <label for="emaSpecifications">规格</label>
+            <InputText
+              id="emaSpecifications"
+              v-model.trim="product.emaSpecifications"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaSpecifications }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaSpecifications"
+              >规格不能为空</small
+            >
+          </div>
+          <div class="field">
+            <label for="emaProducer">生产商</label>
+            <InputText
+              id="emaProducer"
+              v-model.trim="product.emaProducer"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaProducer }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaProducer">生产商不能为空</small>
+          </div>
+          <div class="field">
+            <label for="emaSupplier">提供者</label>
+            <InputText
+              id="emaSupplier"
+              v-model.trim="product.emaSupplier"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.emaSupplier }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.emaSupplier">提供者不能为空</small>
+          </div>
+          <div class="field">
+            <label for="emaDateProduct">生产日期</label>
+            <Calendar
+              id="emaDateProduct"
+              v-model="product.emaDateProduct"
+              required="true"
+              class="p-invalid"
+              :showIcon="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaShelfLife">保质期</label>
+            <Listbox
+              id="emaShelfLife"
+              v-model="product.emaShelfLife"
+              :options="emaShelfLifes"
+              :filter="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaMaintenanceCycle">保养周期</label>
+            <Listbox
+              id="emaMaintenanceCycle"
+              v-model="product.emaMaintenanceCycle"
+              :options="emaMaintenanceCycles"
+              :filter="true"
+            />
+          </div>
+          <div class="field">
+            <label for="emaIsReusable" class="mb-3">是否可循环利用</label>
             <Dropdown
-              id="esNo"
-              v-model="product.esssNo"
-              :options="esssNo"
-              placeholder="请选择库区编号"
+              id="emaIsReusable"
+              v-model="product.emaIsReusable"
+              :options="emaIsReusables"
+              placeholder="是否可循环利用"
             >
               <template #value="slotProps">
                 <div v-if="slotProps.value && slotProps.value.value">
@@ -358,66 +435,6 @@
                 </span>
               </template>
             </Dropdown>
-          </div>
-          <div class="field">
-            <label for="essssSpecifications">规格</label>
-            <InputText
-              id="essssSpecifications"
-              v-model.trim="product.essssSpecifications"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssSpecifications }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFirst">第一层编号</label>
-            <InputText
-              id="essssFloorFirst"
-              v-model.trim="product.essssFloorFirst"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFirst }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorSecond">第二层编号</label>
-            <InputText
-              id="essssFloorSecond"
-              v-model.trim="product.essssFloorSecond"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorSecond }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorThrid">第三层编号</label>
-            <InputText
-              id="essssFloorThrid"
-              v-model.trim="product.essssFloorThrid"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorThrid }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFourth">第四层编号</label>
-            <InputText
-              id="essssFloorFourth"
-              v-model.trim="product.essssFloorFourth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFourth }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFifth">第五层编号</label>
-            <InputText
-              id="essssFloorFifth"
-              v-model.trim="product.essssFloorFifth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFifth }"
-            />
           </div>
 
           <template #footer>
@@ -435,7 +452,7 @@
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
             <span v-if="product">
-              您确定要删除这一项吗？ <b>{{ product.essssNo }}</b>
+              您确定要删除这一项吗？ <b>{{ product.emaNo }}</b>
             </span>
           </div>
           <template #footer>
@@ -484,7 +501,7 @@ import { FilterMatchMode } from "primevue/api"
 import ylRequest from "@/service"
 
 export default {
-  name: "EssssManage",
+  name: "MaterialPackStyle",
   data() {
     return {
       products: null,
@@ -496,7 +513,9 @@ export default {
       selectedProducts: null,
       filters: {},
       submitted: false,
-      esssNo: []
+      emaShelfLifes: ["一个月", "三个月", "六个月", "十二个月", "十八个月", "二十四个月"],
+      emaMaintenanceCycles: ["一个月", "三个月", "六个月", "十二个月", "十八个月", "二十四个月"],
+      emaIsReusables: ["是", "否"]
     }
   },
   created() {
@@ -507,13 +526,11 @@ export default {
   },
   methods: {
     openNew() {
-      this.getEsssNo()
       this.product = {}
       this.submitted = false
       this.createProductDialog = true
     },
     editProduct(product) {
-      this.getEsssNo()
       this.product = { ...product }
       this.updateProductDialog = true
     },
@@ -524,17 +541,9 @@ export default {
       this.deleteProductsDialog = false
       this.submitted = false
     },
-    async getEsssNo() {
-      const datas = await ylRequest.request({
-        url: "/esss/selectEsssNoList",
-        method: "GET",
-        withCredentials: true
-      })
-      this.esssNo = datas.data
-    },
     async getProduct() {
       const datas = await ylRequest.request({
-        url: "/essss/selectAll",
+        url: "/ema/selectAll",
         method: "GET",
         withCredentials: true
       })
@@ -543,7 +552,7 @@ export default {
     async addProduct() {
       this.submitted = true
       const data = await ylRequest.request({
-        url: "/essss/insertNewOne",
+        url: "/ema/insertNewOne",
         method: "POST",
         data: this.product,
         withCredentials: true
@@ -578,7 +587,7 @@ export default {
     async updateProduct() {
       this.submitted = true
       const data = await ylRequest.request({
-        url: "/essss/updateOne",
+        url: "/ema/updateOne",
         method: "POST",
         data: this.product,
         withCredentials: true
@@ -612,10 +621,10 @@ export default {
     },
     async deleteProduct() {
       const data = await ylRequest.request({
-        url: "/essss/deleteOne",
+        url: "/ema/deleteOne",
         method: "DELETE",
         params: {
-          essssId: this.product.essssId
+          emaId: this.product.emaId
         },
         withCredentials: true
       })
@@ -647,14 +656,14 @@ export default {
       this.getProduct()
     },
     async deleteSelectedProducts() {
-      const essssIds = []
+      const emaIds = []
       for (var i = 0; i < this.selectedProducts.length; i++) {
-        essssIds.push(this.selectedProducts[i].essssId)
+        emaIds.push(this.selectedProducts[i].emaId)
       }
       const data = await ylRequest.request({
-        url: "/essss/deleteMany",
+        url: "/ema/deleteMany",
         method: "DELETE",
-        data: essssIds,
+        data: emaIds,
         withCredentials: true
       })
       const code = data.code
@@ -698,6 +707,13 @@ export default {
       this.filters = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS }
       }
+    },
+    formatDate(value) {
+      return value.toLocaleDateString("zh-CN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      })
     }
   }
 }

@@ -49,7 +49,7 @@
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">货架管理</h5>
+              <h5 class="m-0">物资打包方式定义</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
                 <InputText v-model="filters['global'].value" placeholder="查找" />
@@ -59,136 +59,69 @@
 
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
-            field="esssNo"
-            header="货架编号"
+            field="empNo"
+            header="编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">货架编号</span>
-              {{ slotProps.data.esssNo }}
+              <span class="p-column-title">编号</span>
+              {{ slotProps.data.empNo }}
             </template>
           </Column>
           <Column
-            field="esNo"
-            header="物资库编号"
+            field="empNumber"
+            header="一包N项"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">物资库编号</span>
-              {{ slotProps.data.esNo }}
+              <span class="p-column-title">一包N项</span>
+              {{ slotProps.data.empNumber }}
             </template>
           </Column>
           <Column
-            field="essNo"
-            header="仓库编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">仓库编号</span>
-              {{ slotProps.data.essNo }}
-            </template>
-          </Column>
-          <Column
-            field="esssNo"
-            header="库区编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">库区编号</span>
-              {{ slotProps.data.esssNo }}
-            </template>
-          </Column>
-          <Column
-            field="essssSpecifications"
-            header="货架规格"
+            field="empVolume"
+            header="打包后体积"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">货架规格</span>
-              {{ slotProps.data.essssSpecifications }}
+              <span class="p-column-title">打包后体积</span>
+              {{ slotProps.data.empVolume }}
             </template>
           </Column>
           <Column
-            field="essssFloorFirst"
-            header="第一层编号"
+            field="empWeight"
+            header="打包后重量"
             :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
+            headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">第一层编号</span>
-              {{ slotProps.data.essssFloorFirst }}
+              <span class="p-column-title">打包后重量</span>
+              {{ slotProps.data.empWeight }}
             </template>
           </Column>
           <Column
-            field="essssFloorSecond"
-            header="第二层编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">第二层编号</span>
-              {{ slotProps.data.essssFloorSecond }}
-            </template>
-          </Column>
-          <Column
-            field="essssFloorThird"
-            header="第三层编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">第三层编号</span>
-              {{ slotProps.data.essssFloorThird }}
-            </template>
-          </Column>
-          <Column
-            field="essssFloorFourth"
-            header="第四层编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">第四层编号</span>
-              {{ slotProps.data.essssFloorFourth }}
-            </template>
-          </Column>
-          <Column
-            field="essssFloorFifth"
-            header="第五层编号"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">第五层编号</span>
-              {{ slotProps.data.essssFloorFifth }}
-            </template>
-          </Column>
-
-          <Column
-            field="essssTimeValue"
+            field="empTimeValue"
             header="创建时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
               <span class="p-column-title">创建时间</span>
-              {{ slotProps.data.essssTimeValue }}
+              {{ slotProps.data.empTimeValue }}
             </template>
           </Column>
           <Column
-            field="essssTs"
+            field="empTs"
             header="修改时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
               <span class="p-column-title">修改时间</span>
-              {{ slotProps.data.essssTs }}
+              {{ slotProps.data.empTs }}
             </template>
           </Column>
           <Column headerStyle="min-width:10rem;">
@@ -210,106 +143,59 @@
         <Dialog
           v-model:visible="createProductDialog"
           :style="{ width: '450px' }"
-          header="新建货架"
+          header="新建物资打包方式"
           :modal="true"
           class="p-fluid"
         >
           <div class="field">
-            <label for="essssNo">编号</label>
+            <label for="empNo">编号</label>
             <InputText
-              id="esssNo"
-              v-model.trim="product.essssNo"
+              id="empNo"
+              v-model.trim="product.empNo"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssNo }"
+              :class="{ 'p-invalid': submitted && !product.empNo }"
             />
-            <small class="p-invalid" v-if="submitted && !product.essssNo">编号不能为空</small>
+            <small class="p-invalid" v-if="submitted && !product.empNo">编号不能为空</small>
           </div>
           <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
-            <Dropdown
-              id="esNo"
-              v-model="product.esssNo"
-              :options="esssNo"
-              placeholder="请选择库区编号"
+            <label for="empNumber">打包方式：一包N项</label>
+            <InputText
+              id="empNumber"
+              v-model.trim="product.empNumber"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.empNumber }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.empNumber">打包方式不能为空</small>
+          </div>
+          <div class="field">
+            <label for="empVolume">打包后体积</label>
+            <InputText
+              id="empVolume"
+              v-model.trim="product.empVolume"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.empVolume }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.empVolume"
+              >打包后体积不能为空</small
             >
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
           </div>
           <div class="field">
-            <label for="essssSpecifications">规格</label>
+            <label for="empWeight">打包后重量</label>
             <InputText
-              id="essssSpecifications"
-              v-model.trim="product.essssSpecifications"
+              id="empWeight"
+              v-model.trim="product.empWeight"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssSpecifications }"
+              :class="{ 'p-invalid': submitted && !product.empWeight }"
             />
+            <small class="p-invalid" v-if="submitted && !product.empWeight"
+              >打包后重量不能为空</small
+            >
           </div>
-          <div class="field">
-            <label for="essssFloorFirst">第一层编号</label>
-            <InputText
-              id="essssFloorFirst"
-              v-model.trim="product.essssFloorFirst"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFirst }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorSecond">第二层编号</label>
-            <InputText
-              id="essssFloorSecond"
-              v-model.trim="product.essssFloorSecond"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorSecond }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorThrid">第三层编号</label>
-            <InputText
-              id="essssFloorThrid"
-              v-model.trim="product.essssFloorThrid"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorThrid }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFourth">第四层编号</label>
-            <InputText
-              id="essssFloorFourth"
-              v-model.trim="product.essssFloorFourth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFourth }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFifth">第五层编号</label>
-            <InputText
-              id="essssFloorFifth"
-              v-model.trim="product.essssFloorFifth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFifth }"
-            />
-          </div>
+
           <template #footer>
             <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
             <Button label="保存" icon="pi pi-check" class="p-button-text" @click="addProduct" />
@@ -319,105 +205,57 @@
         <Dialog
           v-model:visible="updateProductDialog"
           :style="{ width: '450px' }"
-          header="更新货架"
+          header="修改信息"
           :modal="true"
           class="p-fluid"
         >
           <div class="field">
-            <label for="essssNo">编号</label>
+            <label for="empNo">编号</label>
             <InputText
-              id="esssNo"
-              v-model.trim="product.essssNo"
+              id="empNo"
+              v-model.trim="product.empNo"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssNo }"
+              :class="{ 'p-invalid': submitted && !product.empNo }"
             />
-            <small class="p-invalid" v-if="submitted && !product.essssNo">编号不能为空</small>
+            <small class="p-invalid" v-if="submitted && !product.empNo">编号不能为空</small>
           </div>
           <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
-            <Dropdown
-              id="esNo"
-              v-model="product.esssNo"
-              :options="esssNo"
-              placeholder="请选择库区编号"
+            <label for="empNumber">打包方式：一包N项</label>
+            <InputText
+              id="empNumber"
+              v-model.trim="product.empNumber"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.empNumber }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.empNumber">打包方式不能为空</small>
+          </div>
+          <div class="field">
+            <label for="empVolume">打包后体积</label>
+            <InputText
+              id="empVolume"
+              v-model.trim="product.empVolume"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.empVolume }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.empVolume"
+              >打包后体积不能为空</small
             >
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
           </div>
           <div class="field">
-            <label for="essssSpecifications">规格</label>
+            <label for="empWeight">打包后重量</label>
             <InputText
-              id="essssSpecifications"
-              v-model.trim="product.essssSpecifications"
+              id="empWeight"
+              v-model.trim="product.empWeight"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.essssSpecifications }"
+              :class="{ 'p-invalid': submitted && !product.empWeight }"
             />
-          </div>
-          <div class="field">
-            <label for="essssFloorFirst">第一层编号</label>
-            <InputText
-              id="essssFloorFirst"
-              v-model.trim="product.essssFloorFirst"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFirst }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorSecond">第二层编号</label>
-            <InputText
-              id="essssFloorSecond"
-              v-model.trim="product.essssFloorSecond"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorSecond }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorThrid">第三层编号</label>
-            <InputText
-              id="essssFloorThrid"
-              v-model.trim="product.essssFloorThrid"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorThrid }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFourth">第四层编号</label>
-            <InputText
-              id="essssFloorFourth"
-              v-model.trim="product.essssFloorFourth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFourth }"
-            />
-          </div>
-          <div class="field">
-            <label for="essssFloorFifth">第五层编号</label>
-            <InputText
-              id="essssFloorFifth"
-              v-model.trim="product.essssFloorFifth"
-              required="true"
-              autofocus
-              :class="{ 'p-invalid': submitted && !product.essssFloorFifth }"
-            />
+            <small class="p-invalid" v-if="submitted && !product.empWeight"
+              >打包后重量不能为空</small
+            >
           </div>
 
           <template #footer>
@@ -435,7 +273,7 @@
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
             <span v-if="product">
-              您确定要删除这一项吗？ <b>{{ product.essssNo }}</b>
+              您确定要删除这一项吗？ <b>{{ product.empNo }}</b>
             </span>
           </div>
           <template #footer>
@@ -484,7 +322,7 @@ import { FilterMatchMode } from "primevue/api"
 import ylRequest from "@/service"
 
 export default {
-  name: "EssssManage",
+  name: "MaterialPackStyle",
   data() {
     return {
       products: null,
@@ -495,8 +333,7 @@ export default {
       product: {},
       selectedProducts: null,
       filters: {},
-      submitted: false,
-      esssNo: []
+      submitted: false
     }
   },
   created() {
@@ -507,13 +344,11 @@ export default {
   },
   methods: {
     openNew() {
-      this.getEsssNo()
       this.product = {}
       this.submitted = false
       this.createProductDialog = true
     },
     editProduct(product) {
-      this.getEsssNo()
       this.product = { ...product }
       this.updateProductDialog = true
     },
@@ -524,17 +359,9 @@ export default {
       this.deleteProductsDialog = false
       this.submitted = false
     },
-    async getEsssNo() {
-      const datas = await ylRequest.request({
-        url: "/esss/selectEsssNoList",
-        method: "GET",
-        withCredentials: true
-      })
-      this.esssNo = datas.data
-    },
     async getProduct() {
       const datas = await ylRequest.request({
-        url: "/essss/selectAll",
+        url: "/emp/selectAll",
         method: "GET",
         withCredentials: true
       })
@@ -543,7 +370,7 @@ export default {
     async addProduct() {
       this.submitted = true
       const data = await ylRequest.request({
-        url: "/essss/insertNewOne",
+        url: "/emp/insertNewOne",
         method: "POST",
         data: this.product,
         withCredentials: true
@@ -578,7 +405,7 @@ export default {
     async updateProduct() {
       this.submitted = true
       const data = await ylRequest.request({
-        url: "/essss/updateOne",
+        url: "/emp/updateOne",
         method: "POST",
         data: this.product,
         withCredentials: true
@@ -612,10 +439,10 @@ export default {
     },
     async deleteProduct() {
       const data = await ylRequest.request({
-        url: "/essss/deleteOne",
+        url: "/emp/deleteOne",
         method: "DELETE",
         params: {
-          essssId: this.product.essssId
+          empId: this.product.empId
         },
         withCredentials: true
       })
@@ -647,14 +474,14 @@ export default {
       this.getProduct()
     },
     async deleteSelectedProducts() {
-      const essssIds = []
+      const empIds = []
       for (var i = 0; i < this.selectedProducts.length; i++) {
-        essssIds.push(this.selectedProducts[i].essssId)
+        empIds.push(this.selectedProducts[i].empId)
       }
       const data = await ylRequest.request({
-        url: "/essss/deleteMany",
+        url: "/emp/deleteMany",
         method: "DELETE",
-        data: essssIds,
+        data: empIds,
         withCredentials: true
       })
       const code = data.code

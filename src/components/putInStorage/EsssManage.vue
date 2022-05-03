@@ -7,13 +7,13 @@
           <template v-slot:start>
             <div class="my-2">
               <Button
-                label="New"
+                label="新建"
                 icon="pi pi-plus"
                 class="p-button-success mr-2"
                 @click="openNew"
               />
               <Button
-                label="Delete"
+                label="删除"
                 icon="pi pi-trash"
                 class="p-button-danger"
                 @click="confirmDeleteSelected"
@@ -23,16 +23,8 @@
           </template>
 
           <template v-slot:end>
-            <FileUpload
-              mode="basic"
-              accept="image/*"
-              :maxFileSize="1000000"
-              label="Import"
-              chooseLabel="Import"
-              class="mr-2 inline-block"
-            />
             <Button
-              label="Export"
+              label="导出"
               icon="pi pi-upload"
               class="p-button-help"
               @click="exportCSV($event)"
@@ -50,105 +42,86 @@
           :filters="filters"
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           :rowsPerPageOptions="[5, 10, 25]"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
+          currentPageReportTemplate="{totalRecords} 条数据中的 {first} 条到 {last} 条"
           responsiveLayout="scroll"
         >
           <template #header>
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <h5 class="m-0">Manage Products</h5>
+              <h5 class="m-0">库区管理</h5>
               <span class="block mt-2 md:mt-0 p-input-icon-left">
                 <i class="pi pi-search" />
-                <InputText v-model="filters['global'].value" placeholder="Search..." />
+                <InputText v-model="filters['global'].value" placeholder="查找" />
               </span>
             </div>
           </template>
 
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
-            field="code"
-            header="Code"
+            field="esssNo"
+            header="编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">Code</span>
-              {{ slotProps.data.code }}
+              <span class="p-column-title">编号</span>
+              {{ slotProps.data.esssNo }}
             </template>
           </Column>
           <Column
-            field="name"
-            header="Name"
+            field="esNo"
+            header="物资库编号"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">Name</span>
-              {{ slotProps.data.name }}
-            </template>
-          </Column>
-          <Column header="Image" headerStyle="width:14%; min-width:10rem;">
-            <template #body="slotProps">
-              <span class="p-column-title">Image</span>
-              <img
-                :src="'images/product/' + slotProps.data.image"
-                :alt="slotProps.data.image"
-                class="shadow-2"
-                width="100"
-              />
+              <span class="p-column-title">物资库编号</span>
+              {{ slotProps.data.esNo }}
             </template>
           </Column>
           <Column
-            field="price"
-            header="Price"
+            field="essNo"
+            header="仓库编号"
+            :sortable="true"
+            headerStyle="width:14%; min-width:10rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">仓库编号</span>
+              {{ slotProps.data.essNo }}
+            </template>
+          </Column>
+          <Column
+            field="esssFloorLocation"
+            header="库区所在楼层"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">Price</span>
-              {{ formatCurrency(slotProps.data.price) }}
+              <span class="p-column-title">库区所在楼层</span>
+              {{ slotProps.data.esssFloorLocation }}
             </template>
           </Column>
           <Column
-            field="category"
-            header="Category"
+            field="esssTimeValue"
+            header="创建时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">Category</span>
-              {{ formatCurrency(slotProps.data.category) }}
+              <span class="p-column-title">创建时间</span>
+              {{ slotProps.data.esssTimeValue }}
             </template>
           </Column>
           <Column
-            field="rating"
-            header="Reviews"
+            field="esssTs"
+            header="修改时间"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
             <template #body="slotProps">
-              <span class="p-column-title">Rating</span>
-              <Rating :modelValue="slotProps.data.rating" :readonly="true" :cancel="false" />
-            </template>
-          </Column>
-          <Column
-            field="inventoryStatus"
-            header="Status"
-            :sortable="true"
-            headerStyle="width:14%; min-width:10rem;"
-          >
-            <template #body="slotProps">
-              <span class="p-column-title">Status</span>
-              <span
-                :class="
-                  'product-badge status-' +
-                  (slotProps.data.inventoryStatus
-                    ? slotProps.data.inventoryStatus.toLowerCase()
-                    : '')
-                "
-                >{{ slotProps.data.inventoryStatus }}</span
-              >
+              <span class="p-column-title">修改时间</span>
+              {{ slotProps.data.esssTs }}
             </template>
           </Column>
           <Column headerStyle="min-width:10rem;">
@@ -168,49 +141,31 @@
         </DataTable>
 
         <Dialog
-          v-model:visible="productDialog"
+          v-model:visible="createProductDialog"
           :style="{ width: '450px' }"
-          header="Product Details"
+          header="新建仓库"
           :modal="true"
           class="p-fluid"
         >
-          <img
-            :src="'images/product/' + product.image"
-            :alt="product.image"
-            v-if="product.image"
-            width="150"
-            class="mt-0 mx-auto mb-5 block shadow-2"
-          />
           <div class="field">
-            <label for="name">Name</label>
+            <label for="esssNo">编号</label>
             <InputText
-              id="name"
-              v-model.trim="product.name"
+              id="esssNo"
+              v-model.trim="product.esssNo"
               required="true"
               autofocus
-              :class="{ 'p-invalid': submitted && !product.name }"
+              :class="{ 'p-invalid': submitted && !product.esssNo }"
             />
-            <small class="p-invalid" v-if="submitted && !product.name">Name is required.</small>
-          </div>
-          <div class="field">
-            <label for="description">Description</label>
-            <Textarea
-              id="description"
-              v-model="product.description"
-              required="true"
-              rows="3"
-              cols="20"
-            />
+            <small class="p-invalid" v-if="submitted && !product.esssNo">编号不能为空</small>
           </div>
 
           <div class="field">
-            <label for="inventoryStatus" class="mb-3">Inventory Status</label>
+            <label for="essNo" class="mb-3">仓库编号</label>
             <Dropdown
-              id="inventoryStatus"
-              v-model="product.inventoryStatus"
-              :options="statuses"
-              optionLabel="label"
-              placeholder="Select a Status"
+              id="esNo"
+              v-model="product.essNo"
+              :options="essNo"
+              placeholder="请选择仓库编号"
             >
               <template #value="slotProps">
                 <div v-if="slotProps.value && slotProps.value.value">
@@ -231,112 +186,125 @@
           </div>
 
           <div class="field">
-            <label class="mb-3">Category</label>
-            <div class="formgrid grid">
-              <div class="field-radiobutton col-6">
-                <RadioButton
-                  id="category1"
-                  name="category"
-                  value="Accessories"
-                  v-model="product.category"
-                />
-                <label for="category1">Accessories</label>
-              </div>
-              <div class="field-radiobutton col-6">
-                <RadioButton
-                  id="category2"
-                  name="category"
-                  value="Clothing"
-                  v-model="product.category"
-                />
-                <label for="category2">Clothing</label>
-              </div>
-              <div class="field-radiobutton col-6">
-                <RadioButton
-                  id="category3"
-                  name="category"
-                  value="Electronics"
-                  v-model="product.category"
-                />
-                <label for="category3">Electronics</label>
-              </div>
-              <div class="field-radiobutton col-6">
-                <RadioButton
-                  id="category4"
-                  name="category"
-                  value="Fitness"
-                  v-model="product.category"
-                />
-                <label for="category4">Fitness</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="formgrid grid">
-            <div class="field col">
-              <label for="price">Price</label>
-              <InputNumber
-                id="price"
-                v-model="product.price"
-                mode="currency"
-                currency="USD"
-                locale="en-US"
-              />
-            </div>
-            <div class="field col">
-              <label for="quantity">Quantity</label>
-              <InputNumber id="quantity" v-model="product.quantity" integeronly />
-            </div>
+            <label for="esssFloorLocation">位置</label>
+            <InputText
+              id="esssFloorLocation"
+              v-model.trim="product.esssFloorLocation"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.esssFloorLocation }"
+            />
           </div>
           <template #footer>
-            <Button label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
-            <Button label="Save" icon="pi pi-check" class="p-button-text" @click="saveProduct" />
+            <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <Button label="保存" icon="pi pi-check" class="p-button-text" @click="addProduct" />
+          </template>
+        </Dialog>
+
+        <Dialog
+          v-model:visible="updateProductDialog"
+          :style="{ width: '450px' }"
+          header="更新库区"
+          :modal="true"
+          class="p-fluid"
+        >
+          <div class="field">
+            <label for="esssNo">编号</label>
+            <InputText
+              id="esssNo"
+              v-model.trim="product.esssNo"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.esssNo }"
+            />
+            <small class="p-invalid" v-if="submitted && !product.esssNo">编号不能为空</small>
+          </div>
+
+          <div class="field">
+            <label for="essNo" class="mb-3">仓库编号</label>
+            <Dropdown
+              id="esNo"
+              v-model="product.essNo"
+              :options="essNo"
+              placeholder="请选择仓库编号"
+            >
+              <template #value="slotProps">
+                <div v-if="slotProps.value && slotProps.value.value">
+                  <span :class="'product-badge status-' + slotProps.value.value">{{
+                    slotProps.value.label
+                  }}</span>
+                </div>
+                <div v-else-if="slotProps.value && !slotProps.value.value">
+                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
+                    slotProps.value
+                  }}</span>
+                </div>
+                <span v-else>
+                  {{ slotProps.placeholder }}
+                </span>
+              </template>
+            </Dropdown>
+          </div>
+
+          <div class="field">
+            <label for="esssFloorLocation">位置</label>
+            <InputText
+              id="esssFloorLocation"
+              v-model.trim="product.esssFloorLocation"
+              required="true"
+              autofocus
+              :class="{ 'p-invalid': submitted && !product.esssFloorLocation }"
+            />
+          </div>
+
+          <template #footer>
+            <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <Button label="保存" icon="pi pi-check" class="p-button-text" @click="updateProduct" />
           </template>
         </Dialog>
 
         <Dialog
           v-model:visible="deleteProductDialog"
           :style="{ width: '450px' }"
-          header="Confirm"
+          header="警告⚠"
           :modal="true"
         >
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-            <span v-if="product"
-              >Are you sure you want to delete <b>{{ product.name }}</b
-              >?</span
-            >
+            <span v-if="product">
+              您确定要删除这一项吗？ <b>{{ product.esssNo }}</b>
+            </span>
           </div>
           <template #footer>
             <Button
-              label="No"
+              label="取消"
               icon="pi pi-times"
               class="p-button-text"
               @click="deleteProductDialog = false"
             />
-            <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
+            <Button label="确定" icon="pi pi-check" class="p-button-text" @click="deleteProduct" />
           </template>
         </Dialog>
 
         <Dialog
           v-model:visible="deleteProductsDialog"
           :style="{ width: '450px' }"
-          header="Confirm"
+          header="警告⚠"
           :modal="true"
         >
           <div class="flex align-items-center justify-content-center">
             <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-            <span v-if="product">Are you sure you want to delete the selected products?</span>
+            <span v-if="product"> 您确定要删除所选项吗？ </span>
           </div>
           <template #footer>
             <Button
-              label="No"
+              label="取消"
               icon="pi pi-times"
               class="p-button-text"
               @click="deleteProductsDialog = false"
             />
             <Button
-              label="Yes"
+              label="确定"
               icon="pi pi-check"
               class="p-button-text"
               @click="deleteSelectedProducts"
@@ -350,135 +318,218 @@
 
 <script>
 import { FilterMatchMode } from "primevue/api"
-import ProductService from "../../service/ProductService"
+import ylRequest from "@/service"
 
 export default {
   name: "EsssManage",
   data() {
     return {
       products: null,
-      productDialog: false,
+      createProductDialog: false,
+      updateProductDialog: false,
       deleteProductDialog: false,
       deleteProductsDialog: false,
       product: {},
       selectedProducts: null,
       filters: {},
       submitted: false,
-      statuses: [
-        { label: "INSTOCK", value: "instock" },
-        { label: "LOWSTOCK", value: "lowstock" },
-        { label: "OUTOFSTOCK", value: "outofstock" }
-      ]
+      essNo: []
     }
   },
-  productService: null,
   created() {
-    this.productService = new ProductService()
     this.initFilters()
   },
   mounted() {
-    this.productService.getProducts().then((data) => (this.products = data))
+    this.getProduct()
   },
   methods: {
-    formatCurrency(value) {
-      if (value) return value.toLocaleString("en-US", { style: "currency", currency: "USD" })
-      return
-    },
     openNew() {
+      this.getEssNo()
       this.product = {}
       this.submitted = false
-      this.productDialog = true
-    },
-    hideDialog() {
-      this.productDialog = false
-      this.submitted = false
-    },
-    saveProduct() {
-      this.submitted = true
-      if (this.product.name.trim()) {
-        if (this.product.id) {
-          this.product.inventoryStatus = this.product.inventoryStatus.value
-            ? this.product.inventoryStatus.value
-            : this.product.inventoryStatus
-          this.products[this.findIndexById(this.product.id)] = this.product
-          this.$toast.add({
-            severity: "success",
-            summary: "Successful",
-            detail: "Product Updated",
-            life: 3000
-          })
-        } else {
-          this.product.id = this.createId()
-          this.product.code = this.createId()
-          this.product.image = "product-placeholder.svg"
-          this.product.inventoryStatus = this.product.inventoryStatus
-            ? this.product.inventoryStatus.value
-            : "INSTOCK"
-          this.products.push(this.product)
-          this.$toast.add({
-            severity: "success",
-            summary: "Successful",
-            detail: "Product Created",
-            life: 3000
-          })
-        }
-        this.productDialog = false
-        this.product = {}
-      }
+      this.createProductDialog = true
     },
     editProduct(product) {
+      this.getEssNo()
       this.product = { ...product }
-      this.productDialog = true
+      this.updateProductDialog = true
+    },
+    hideDialog() {
+      this.createProductDialog = false
+      this.updateProductDialog = false
+      this.deleteProductDialog = false
+      this.deleteProductsDialog = false
+      this.submitted = false
+    },
+    async getEssNo() {
+      const datas = await ylRequest.request({
+        url: "/ess/selectEssNoList",
+        method: "GET",
+        withCredentials: true
+      })
+      this.essNo = datas.data
+    },
+    async getProduct() {
+      const datas = await ylRequest.request({
+        url: "/esss/selectAll",
+        method: "GET",
+        withCredentials: true
+      })
+      this.products = datas.data
+    },
+    async addProduct() {
+      this.submitted = true
+      const data = await ylRequest.request({
+        url: "/esss/insertNewOne",
+        method: "POST",
+        data: this.product,
+        withCredentials: true
+      })
+      const code = data.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+      this.createProductDialog = false
+      this.product = {}
+      this.getProduct()
+    },
+    async updateProduct() {
+      this.submitted = true
+      const data = await ylRequest.request({
+        url: "/esss/updateOne",
+        method: "POST",
+        data: this.product,
+        withCredentials: true
+      })
+      const code = data.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+      this.updateProductDialog = false
+      this.product = {}
+      this.getProduct()
+    },
+    async deleteProduct() {
+      const data = await ylRequest.request({
+        url: "/esss/deleteOne",
+        method: "DELETE",
+        params: {
+          esssId: this.product.esssId
+        },
+        withCredentials: true
+      })
+      const code = data.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+      this.deleteProductDialog = false
+      this.product = {}
+      this.getProduct()
+    },
+    async deleteSelectedProducts() {
+      const esssIds = []
+      for (var i = 0; i < this.selectedProducts.length; i++) {
+        esssIds.push(this.selectedProducts[i].esssId)
+      }
+      const data = await ylRequest.request({
+        url: "/esss/deleteMany",
+        method: "DELETE",
+        data: esssIds,
+        withCredentials: true
+      })
+      const code = data.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+      this.deleteProductsDialog = false
+      this.selectedProducts = null
+      this.getProduct()
     },
     confirmDeleteProduct(product) {
       this.product = product
       this.deleteProductDialog = true
-    },
-    deleteProduct() {
-      this.products = this.products.filter((val) => val.id !== this.product.id)
-      this.deleteProductDialog = false
-      this.product = {}
-      this.$toast.add({
-        severity: "success",
-        summary: "Successful",
-        detail: "Product Deleted",
-        life: 3000
-      })
-    },
-    findIndexById(id) {
-      let index = -1
-      for (let i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === id) {
-          index = i
-          break
-        }
-      }
-      return index
-    },
-    createId() {
-      let id = ""
-      var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-      for (var i = 0; i < 5; i++) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length))
-      }
-      return id
     },
     exportCSV() {
       this.$refs.dt.exportCSV()
     },
     confirmDeleteSelected() {
       this.deleteProductsDialog = true
-    },
-    deleteSelectedProducts() {
-      this.products = this.products.filter((val) => !this.selectedProducts.includes(val))
-      this.deleteProductsDialog = false
-      this.selectedProducts = null
-      this.$toast.add({
-        severity: "success",
-        summary: "Successful",
-        detail: "Products Deleted",
-        life: 3000
-      })
     },
     initFilters() {
       this.filters = {

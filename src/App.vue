@@ -52,51 +52,44 @@ export default {
           icon: "pi pi-fw pi-search",
           items: [
             {
-              label: "Submenu 1",
+              label: "仓库定义",
               icon: "pi pi-fw pi-bookmark",
               items: [
+                { label: "物资库管理", icon: "pi pi-fw pi-bookmark", to: "/esManage" },
+                { label: "仓库管理", icon: "pi pi-fw pi-bookmark", to: "/essManage" },
+                { label: "库区管理", icon: "pi pi-fw pi-bookmark", to: "/esssManage" },
+                { label: "货架管理", icon: "pi pi-fw pi-bookmark", to: "/essssManage" }
+              ]
+            },
+            {
+              label: "物资入库",
+              icon: "pi pi-fw pi-bookmark",
+              items: [
+                { label: "物资类型定义", icon: "pi pi-fw pi-bookmark", to: "/materialType" },
                 {
-                  label: "Submenu 1.1",
+                  label: "物资打包方式定义",
                   icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "Submenu 1.1.1", icon: "pi pi-fw pi-bookmark" },
-                    { label: "Submenu 1.1.2", icon: "pi pi-fw pi-bookmark" },
-                    { label: "Submenu 1.1.3", icon: "pi pi-fw pi-bookmark" }
-                  ]
+                  to: "/materialPackStyle"
                 },
                 {
-                  label: "Submenu 1.2",
+                  label: "物资属性定义",
                   icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "Submenu 1.2.1", icon: "pi pi-fw pi-bookmark" },
-                    { label: "Submenu 1.2.2", icon: "pi pi-fw pi-bookmark" }
-                  ]
+                  to: "/materialAttribute"
+                },
+                {
+                  label: "物资入库",
+                  icon: "pi pi-fw pi-bookmark",
+                  to: "/materialEnter"
                 }
               ]
             },
-            //入库构想
             {
-              label: "入库管理",
+              label: "入库物资详情",
               icon: "pi pi-fw pi-bookmark",
               items: [
-                {
-                  label: "仓库管理",
-                  icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "总库定义", icon: "pi pi-fw pi-bookmark", to: "/esManage" },
-                    { label: "仓库定义", icon: "pi pi-fw pi-bookmark", to: "/essManage" },
-                    { label: "库区定义", icon: "pi pi-fw pi-bookmark", to: "/esssManage" },
-                    { label: "货架定义", icon: "pi pi-fw pi-bookmark", to: "/essssManage" }
-                  ]
-                },
-                {
-                  label: "物资管理",
-                  icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "物资入库", icon: "pi pi-fw pi-bookmark" },
-                    { label: "入库详情", icon: "pi pi-fw pi-bookmark" }
-                  ]
-                }
+                { label: "生成入库单", icon: "pi pi-fw pi-bookmark", to: "/entryList" },
+                { label: "生成电子标签", icon: "pi pi-fw pi-bookmark", to: "/rfid" },
+                { label: "入库物资验收", icon: "pi pi-fw pi-bookmark", to: "/materialAccept" }
               ]
             }
           ]

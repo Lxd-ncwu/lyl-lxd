@@ -77,16 +77,16 @@ export default {
   components: {
     Toast
   },
-  async beforeRouteEnter(to, from) {
-    const data = await ylRequest.request({
-      url: "/check_token",
-      method: "GET"
-    })
-    const code = data.code
-    if (code === 0) {
-      return "/index"
-    }
-  },
+  // async beforeRouteEnter(to, from) {
+  //   const data = await ylRequest.request({
+  //     url: "/check_token",
+  //     method: "GET"
+  //   })
+  //   const code = data.code
+  //   if (code === 0) {
+  //     return "/index"
+  //   }
+  // },
   computed: {
     logoColor() {
       if (this.$appState.darkTheme) return "white"
