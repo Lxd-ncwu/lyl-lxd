@@ -59,6 +59,17 @@
 
           <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
           <Column
+            field="emeNo"
+            header="编号"
+            :sortable="true"
+            headerStyle="width:14%; min-width:10rem;"
+          >
+            <template #body="slotProps">
+              <span class="p-column-title">编号</span>
+              {{ slotProps.data.emeNo }}
+            </template>
+          </Column>
+          <Column
             field="emaName"
             header="品名"
             :sortable="true"
@@ -215,11 +226,6 @@
           <Column headerStyle="min-width:10rem;">
             <template #body="slotProps">
               <Button
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
-                @click="editProduct(slotProps.data)"
-              />
-              <Button
                 icon="pi pi-trash"
                 class="p-button-rounded p-button-warning mt-2"
                 @click="confirmDeleteProduct(slotProps.data)"
@@ -251,7 +257,7 @@
             <Dropdown
               id="emaName"
               v-model="product.emaName"
-              :options="emaName"
+              :options="emaNames"
               placeholder="请选择品名"
             >
               <template #value="slotProps">
@@ -276,7 +282,7 @@
             <Dropdown
               id="emtNo"
               v-model="product.emtNo"
-              :options="emtNo"
+              :options="emtNos"
               placeholder="请选择物资类型"
             >
               <template #value="slotProps">
@@ -301,7 +307,7 @@
             <Dropdown
               id="empNo"
               v-model="product.empNo"
-              :options="empNo"
+              :options="empNos"
               placeholder="请选择打包方式"
             >
               <template #value="slotProps">
@@ -323,7 +329,7 @@
           </div>
           <div class="field">
             <label for="emaNo" class="mb-3">属性</label>
-            <Dropdown id="emaNo" v-model="product.emaNo" :options="emaNo" placeholder="请选择属性">
+            <Dropdown id="emaNo" v-model="product.emaNo" :options="emaNos" placeholder="请选择属性">
               <template #value="slotProps">
                 <div v-if="slotProps.value && slotProps.value.value">
                   <span :class="'product-badge status-' + slotProps.value.value">{{
@@ -353,71 +359,11 @@
             <small class="p-invalid" v-if="submitted && !product.emeType">入库方式不能为空</small>
           </div>
           <div class="field">
-            <label for="esNo" class="mb-3">物资库编号</label>
-            <Dropdown id="esNo" v-model="product.esNo" :options="esNo" placeholder="物资库编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
-            <label for="essNo" class="mb-3">仓库编号</label>
-            <Dropdown id="essNo" v-model="product.essNo" :options="essNo" placeholder="仓库编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
-            <Dropdown id="esssNo" v-model="product.esssNo" :options="esssNo" placeholder="库区编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
             <label for="essssNo" class="mb-3">货架编号</label>
             <Dropdown
               id="essssNo"
               v-model="product.essssNo"
-              :options="essssNo"
+              :options="essssNos"
               placeholder="货架编号"
             >
               <template #value="slotProps">
@@ -491,7 +437,7 @@
             <Dropdown
               id="emaName"
               v-model="product.emaName"
-              :options="emaName"
+              :options="emaNames"
               placeholder="请选择品名"
             >
               <template #value="slotProps">
@@ -516,7 +462,7 @@
             <Dropdown
               id="emtNo"
               v-model="product.emtNo"
-              :options="emtNo"
+              :options="emtNos"
               placeholder="请选择物资类型"
             >
               <template #value="slotProps">
@@ -541,7 +487,7 @@
             <Dropdown
               id="empNo"
               v-model="product.empNo"
-              :options="empNo"
+              :options="empNos"
               placeholder="请选择打包方式"
             >
               <template #value="slotProps">
@@ -563,7 +509,7 @@
           </div>
           <div class="field">
             <label for="emaNo" class="mb-3">属性</label>
-            <Dropdown id="emaNo" v-model="product.emaNo" :options="emaNo" placeholder="请选择属性">
+            <Dropdown id="emaNo" v-model="product.emaNo" :options="emaNos" placeholder="请选择属性">
               <template #value="slotProps">
                 <div v-if="slotProps.value && slotProps.value.value">
                   <span :class="'product-badge status-' + slotProps.value.value">{{
@@ -593,71 +539,11 @@
             <small class="p-invalid" v-if="submitted && !product.emeType">入库方式不能为空</small>
           </div>
           <div class="field">
-            <label for="esNo" class="mb-3">物资库编号</label>
-            <Dropdown id="esNo" v-model="product.esNo" :options="esNo" placeholder="物资库编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
-            <label for="essNo" class="mb-3">仓库编号</label>
-            <Dropdown id="essNo" v-model="product.essNo" :options="essNo" placeholder="仓库编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
-            <label for="esssNo" class="mb-3">库区编号</label>
-            <Dropdown id="esssNo" v-model="product.esssNo" :options="esssNo" placeholder="库区编号">
-              <template #value="slotProps">
-                <div v-if="slotProps.value && slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.value">{{
-                    slotProps.value.label
-                  }}</span>
-                </div>
-                <div v-else-if="slotProps.value && !slotProps.value.value">
-                  <span :class="'product-badge status-' + slotProps.value.toLowerCase()">{{
-                    slotProps.value
-                  }}</span>
-                </div>
-                <span v-else>
-                  {{ slotProps.placeholder }}
-                </span>
-              </template>
-            </Dropdown>
-          </div>
-          <div class="field">
             <label for="essssNo" class="mb-3">货架编号</label>
             <Dropdown
               id="essssNo"
               v-model="product.essssNo"
-              :options="essssNo"
+              :options="essssNos"
               placeholder="货架编号"
             >
               <template #value="slotProps">
@@ -779,13 +665,10 @@ export default {
       filters: {},
       submitted: false,
       emaName: [],
-      emtNo: [],
-      empNo: [],
-      emaNo: [],
-      esNo: [],
-      essNo: [],
-      esssNo: [],
-      essssNo: []
+      emtNos: [],
+      empNos: [],
+      emaNos: [],
+      essssNos: []
     }
   },
   created() {
@@ -819,14 +702,12 @@ export default {
         method: "GET",
         withCredentials: true
       })
-      this.emaName = info.emaNames
-      this.emtNo = info.emtNos
-      this.empNo = info.empNos
-      this.emaNo = info.emaNos
-      this.esNo = info.esNos
-      this.essNo = info.essNos
-      this.esssNo = info.esssNos
-      this.essssNo = info.essssNos
+      this.emaNames = info.data.emaNames
+      console.log(this.emaNames)
+      this.emtNos = info.data.emtNos
+      this.empNos = info.data.empNos
+      this.emaNos = info.data.emaNos
+      this.essssNos = info.data.essssNos
     },
     async getProduct() {
       const datas = await ylRequest.request({

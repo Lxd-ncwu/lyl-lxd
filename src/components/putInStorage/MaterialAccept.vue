@@ -48,8 +48,21 @@
               </span>
             </div>
           </template>
-          <template #empty> 没有此条记录 </template>
+          <template #empty> 没有符合条件的记录 </template>
           <template #loading> 正在加载 请稍后 </template>
+          <Column field="emeNo" header="编号" style="min-width: 12rem">
+            <template #body="{ data }">
+              {{ data.emeNo }}
+            </template>
+            <template #filter="{ filterModel }">
+              <InputText
+                type="text"
+                v-model="filterModel.value"
+                class="p-column-filter"
+                placeholder="按编号搜索"
+              />
+            </template>
+          </Column>
           <Column field="emaName" header="品名" style="min-width: 12rem">
             <template #body="{ data }">
               {{ data.emaName }}
@@ -325,7 +338,7 @@ export default {
         method: "GET",
         withCredentials: true
       })
-      this.customer1 = data
+      this.customer1 = data.data
       this.loading1 = false
       this.customer1.forEach((customer) => (customer.date = new Date(customer.date)))
       this.loading2 = false
@@ -337,6 +350,29 @@ export default {
         data: data,
         withCredentials: true
       })
+      const code = info.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
       this.selectAll()
     }
   }

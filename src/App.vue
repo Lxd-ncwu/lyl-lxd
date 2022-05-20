@@ -87,103 +87,108 @@ export default {
               label: "入库物资详情",
               icon: "pi pi-fw pi-bookmark",
               items: [
-                { label: "生成入库单", icon: "pi pi-fw pi-bookmark", to: "/entryList" },
+                {
+                  label: "物资入库信息更改",
+                  icon: "pi pi-fw pi-bookmark",
+                  to: "/materialEnterUpdate"
+                },
                 { label: "生成电子标签", icon: "pi pi-fw pi-bookmark", to: "/rfid" },
-                { label: "入库物资验收", icon: "pi pi-fw pi-bookmark", to: "/materialAccept" }
+                { label: "入库物资验收", icon: "pi pi-fw pi-bookmark", to: "/materialAccept" },
+                { label: "生成入库单", icon: "pi pi-fw pi-bookmark", to: "/entryList" }
               ]
             }
-          ]
-        },
-        {
-          label: "采购模块所需",
-          icon: "pi pi-fw pi-search",
-          items: [
-            {
-              label: "后台管理(仅管理员可见)",
-              icon: "pi pi-fw pi-bookmark",
-              items: [
-                {
-                  label: "采购管理",
-                  icon: "pi pi-fw pi-bookmark",
-                  items: [
-                    { label: "订单审核", icon: "pi pi-fw pi-bookmark", to: "checkOrder" },
-                    { label: "订单查询", icon: "pi pi-fw pi-bookmark", to: "rootOrderList" }
-                  ]
-                },
-                {
-                  label: "用户管理",
-                  icon: "pi pi-fw pi-bookmark ",
-                  to: "/userList"
-                },
-                {
-                  label: "添加供应商",
-                  icon: "pi pi-fw pi-bookmark",
-                  to: "/newProducter"
-                }
-              ]
-            },
-            {
-              label: "仓库信息",
-              icon: "pi pi-fw pi-bookmark",
-              items: [
-                { label: "逻辑库信息", icon: "pi pi-fw pi-bookmark", to: "/storage" },
-                { label: "实体库信息", icon: "pi pi-fw pi-bookmark", to: "/storeRoom" },
-                { label: "分库区信息", icon: "pi pi-fw pi-bookmark", to: "/spaceStore" }
-              ]
-            },
-            {
-              label: "物资信息",
-              icon: "pi pi-fw pi-bookmark",
-              items: [
-                { label: "物资属性", icon: "pi pi-fw pi-bookmark", to: "/materialList" },
-                { label: "逻辑库物资", icon: "pi pi-fw pi-bookmark", to: "/storageMaterial" },
-                { label: "实体库物资", icon: "pi pi-fw pi-bookmark", to: "/storageRoomMaterial" },
-                { label: "分库区物资", icon: "pi pi-fw pi-bookmark", to: "/spaceMaterial" }
-              ]
-            },
-            {
-              label: "物资采购",
-              icon: "pi pi-fw pi-bookmark",
-              items: [
-                {
-                  label: "现有物资采购",
-                  icon: "pi pi-fw pi-bookmark",
-                  to: "/storageMaterialOrder"
-                },
-                { label: "新物资采购", icon: "pi pi-fw pi-bookmark", to: "/newMaterialOrder" },
-                { label: "采购订单查询", icon: "pi pi-fw pi-bookmark", to: "/userOrderList" }
-              ]
-            },
-            {
-              label: "查看供应商信息",
-              icon: "pi pi-fw pi-bookmark",
-              to: "/producerList"
-            }
-          ]
-        },
-        {
-          label: "常用UI组件",
-          icon: "pi pi-fw pi-sitemap",
-          items: [
-            { label: "Form Layout", icon: "pi pi-fw pi-id-card", to: "/formlayout" },
-            { label: "Input", icon: "pi pi-fw pi-check-square", to: "/input" },
-            { label: "Invalid State", icon: "pi pi-fw pi-exclamation-circle", to: "/invalidstate" },
-            { label: "Button", icon: "pi pi-fw pi-mobile", to: "/button" },
-            { label: "Table", icon: "pi pi-fw pi-table", to: "/table" },
-            { label: "Chart", icon: "pi pi-fw pi-chart-bar", to: "/chart" }
-          ]
-        },
-        {
-          label: "常用页面",
-          icon: "pi pi-fw pi-clone",
-          items: [
-            { label: "Crud", icon: "pi pi-fw pi-user-edit", to: "/crud" },
-            { label: "登录页面", icon: "pi pi-fw pi-sign-in", to: "/login" },
-            { label: "500错误", icon: "pi pi-fw pi-times-circle", to: "/error" },
-            { label: "404路径错误", icon: "pi pi-fw pi-exclamation-circle", to: "/notfound" },
-            { label: "403拒绝访问", icon: "pi pi-fw pi-lock", to: "/access" }
           ]
         }
+        // {
+        //   label: "采购模块所需",
+        //   icon: "pi pi-fw pi-search",
+        //   items: [
+        //     {
+        //       label: "后台管理(仅管理员可见)",
+        //       icon: "pi pi-fw pi-bookmark",
+        //       items: [
+        //         {
+        //           label: "采购管理",
+        //           icon: "pi pi-fw pi-bookmark",
+        //           items: [
+        //             { label: "订单审核", icon: "pi pi-fw pi-bookmark", to: "checkOrder" },
+        //             { label: "订单查询", icon: "pi pi-fw pi-bookmark", to: "rootOrderList" }
+        //           ]
+        //         },
+        //         {
+        //           label: "用户管理",
+        //           icon: "pi pi-fw pi-bookmark ",
+        //           to: "/userList"
+        //         },
+        //         {
+        //           label: "添加供应商",
+        //           icon: "pi pi-fw pi-bookmark",
+        //           to: "/newProducter"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       label: "仓库信息",
+        //       icon: "pi pi-fw pi-bookmark",
+        //       items: [
+        //         { label: "逻辑库信息", icon: "pi pi-fw pi-bookmark", to: "/storage" },
+        //         { label: "实体库信息", icon: "pi pi-fw pi-bookmark", to: "/storeRoom" },
+        //         { label: "分库区信息", icon: "pi pi-fw pi-bookmark", to: "/spaceStore" }
+        //       ]
+        //     },
+        //     {
+        //       label: "物资信息",
+        //       icon: "pi pi-fw pi-bookmark",
+        //       items: [
+        //         { label: "物资属性", icon: "pi pi-fw pi-bookmark", to: "/materialList" },
+        //         { label: "逻辑库物资", icon: "pi pi-fw pi-bookmark", to: "/storageMaterial" },
+        //         { label: "实体库物资", icon: "pi pi-fw pi-bookmark", to: "/storageRoomMaterial" },
+        //         { label: "分库区物资", icon: "pi pi-fw pi-bookmark", to: "/spaceMaterial" }
+        //       ]
+        //     },
+        //     {
+        //       label: "物资采购",
+        //       icon: "pi pi-fw pi-bookmark",
+        //       items: [
+        //         {
+        //           label: "现有物资采购",
+        //           icon: "pi pi-fw pi-bookmark",
+        //           to: "/storageMaterialOrder"
+        //         },
+        //         { label: "新物资采购", icon: "pi pi-fw pi-bookmark", to: "/newMaterialOrder" },
+        //         { label: "采购订单查询", icon: "pi pi-fw pi-bookmark", to: "/userOrderList" }
+        //       ]
+        //     },
+        //     {
+        //       label: "查看供应商信息",
+        //       icon: "pi pi-fw pi-bookmark",
+        //       to: "/producerList"
+        //     }
+        //   ]
+        // },
+        // {
+        //   label: "常用UI组件",
+        //   icon: "pi pi-fw pi-sitemap",
+        //   items: [
+        //     { label: "Form Layout", icon: "pi pi-fw pi-id-card", to: "/formlayout" },
+        //     { label: "Input", icon: "pi pi-fw pi-check-square", to: "/input" },
+        //     { label: "Invalid State", icon: "pi pi-fw pi-exclamation-circle", to: "/invalidstate" },
+        //     { label: "Button", icon: "pi pi-fw pi-mobile", to: "/button" },
+        //     { label: "Table", icon: "pi pi-fw pi-table", to: "/table" },
+        //     { label: "Chart", icon: "pi pi-fw pi-chart-bar", to: "/chart" }
+        //   ]
+        // },
+        // {
+        //   label: "常用页面",
+        //   icon: "pi pi-fw pi-clone",
+        //   items: [
+        //     { label: "Crud", icon: "pi pi-fw pi-user-edit", to: "/crud" },
+        //     { label: "登录页面", icon: "pi pi-fw pi-sign-in", to: "/login" },
+        //     { label: "500错误", icon: "pi pi-fw pi-times-circle", to: "/error" },
+        //     { label: "404路径错误", icon: "pi pi-fw pi-exclamation-circle", to: "/notfound" },
+        //     { label: "403拒绝访问", icon: "pi pi-fw pi-lock", to: "/access" }
+        //   ]
+        // }
       ]
     }
   },

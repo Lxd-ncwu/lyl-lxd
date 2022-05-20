@@ -121,7 +121,7 @@
           >
             <template #body="slotProps">
               <span class="p-column-title">生产日期</span>
-              {{ formatDate(slotProps.data.emaDateProduct) }}
+              {{ slotProps.data.emaDateProduct }}
             </template>
           </Column>
           <Column
@@ -264,9 +264,9 @@
             <Calendar
               id="emaDateProduct"
               v-model="product.emaDateProduct"
-              required="true"
-              class="p-invalid"
               :showIcon="true"
+              dateFormat="yy-mm-dd"
+              placeholder="yyyy-mm-dd"
             />
           </div>
           <div class="field">
@@ -388,9 +388,9 @@
             <Calendar
               id="emaDateProduct"
               v-model="product.emaDateProduct"
-              required="true"
-              class="p-invalid"
               :showIcon="true"
+              dateFormat="yy-mm-dd"
+              placeholder="yyyy-mm-dd"
             />
           </div>
           <div class="field">

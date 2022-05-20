@@ -138,8 +138,8 @@
             <template #filter="{ filterModel }">
               <Calendar
                 v-model="filterModel.value"
-                dateFormat="mm/dd/yy"
-                placeholder="mm/dd/yyyy"
+                dateFormat="yy-mm-dd"
+                placeholder="yyyy-mm-dd"
               />
             </template>
           </Column>
@@ -562,6 +562,7 @@ export default {
       return value.toLocaleString("en-US", { style: "currency", currency: "USD" })
     },
     formatDate(value) {
+      console.log(value)
       return value.toLocaleDateString("en-US", {
         day: "2-digit",
         month: "2-digit",

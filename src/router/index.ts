@@ -102,6 +102,11 @@ const routes = [
         component: () => import("@/components/putInStorage/MaterialEnter.vue")
       },
       {
+        path: "/materialEnterUpdate",
+        name: "materialEnterUpdate",
+        component: () => import("@/components/putInStorage/MaterialEnterUpdate.vue")
+      },
+      {
         path: "/materialAccept",
         name: "materialAccept",
         component: () => import("@/components/putInStorage/MaterialAccept.vue")
