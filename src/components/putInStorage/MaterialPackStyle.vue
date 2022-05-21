@@ -21,15 +21,6 @@
               />
             </div>
           </template>
-
-          <template v-slot:end>
-            <Button
-              label="导出"
-              icon="pi pi-upload"
-              class="p-button-help"
-              @click="exportCSV($event)"
-            />
-          </template>
         </Toolbar>
 
         <DataTable
@@ -82,7 +73,7 @@
           </Column>
           <Column
             field="empVolume"
-            header="打包后体积"
+            header="打包后体积：m³"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -93,7 +84,7 @@
           </Column>
           <Column
             field="empWeight"
-            header="打包后重量"
+            header="打包后重量：kg"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -177,6 +168,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.empVolume }"
+              placeholder="单位：立方米m³"
             />
             <small class="p-invalid" v-if="submitted && !product.empVolume"
               >打包后体积不能为空</small
@@ -190,6 +182,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.empWeight }"
+              placeholder="单位：公斤kg"
             />
             <small class="p-invalid" v-if="submitted && !product.empWeight"
               >打包后重量不能为空</small
@@ -239,6 +232,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.empVolume }"
+              placeholder="单位：立方米m³"
             />
             <small class="p-invalid" v-if="submitted && !product.empVolume"
               >打包后体积不能为空</small
@@ -252,6 +246,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.empWeight }"
+              placeholder="单位：公斤kg"
             />
             <small class="p-invalid" v-if="submitted && !product.empWeight"
               >打包后重量不能为空</small

@@ -104,7 +104,7 @@
           </Column>
           <Column
             field="essArea"
-            header="面积"
+            header="面积：㎡"
             :sortable="true"
             headerStyle="width:14%; min-width:10rem;"
           >
@@ -247,6 +247,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.essArea }"
+              placeholder="单位：平方米㎡"
             />
           </div>
           <div class="field">
@@ -338,6 +339,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.essArea }"
+              placeholder="单位：平方米㎡"
             />
           </div>
           <div class="field">

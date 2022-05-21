@@ -21,15 +21,6 @@
               />
             </div>
           </template>
-
-          <template v-slot:end>
-            <Button
-              label="导出"
-              icon="pi pi-upload"
-              class="p-button-help"
-              @click="exportCSV($event)"
-            />
-          </template>
         </Toolbar>
 
         <DataTable
