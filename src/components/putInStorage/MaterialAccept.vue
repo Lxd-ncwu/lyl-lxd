@@ -240,6 +240,34 @@
             </template>
           </Column>
         </DataTable>
+
+        <!--        <Card v-model:visible="printRFIDDialog">-->
+        <!--          <template v-slot:title>-->
+        <!--            <div class="flex align-items-center justify-content-between mb-0">-->
+        <!--              <h5>电子标签信息</h5>-->
+        <!--              <Button icon="pi pi-plus" class="p-button-text" @click="toggle" />-->
+        <!--            </div>-->
+        <!--            <Menu id="config_menu" ref="menu" :model="cardMenu" :popup="true" />-->
+        <!--          </template>-->
+
+        <!--          <template v-slot:content>-->
+        <!--            <p class="line-height-3 m-0">{{}}</p>-->
+        <!--          </template>-->
+        <!--        </Card>-->
+
+        <Dialog
+          v-model:visible="printRFIDDialog"
+          :style="{ width: '450px' }"
+          header="生成电子标签信息"
+          :modal="true"
+          class="p-fluid"
+        >
+          <p class="line-height-3 m-0">{{ allInfo }}</p>
+          <template #footer>
+            <Button label="取消" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <Button label="导出" icon="pi pi-check" class="p-button-text" />
+          </template>
+        </Dialog>
       </div>
     </div>
   </div>
@@ -255,14 +283,16 @@ export default {
       customer1: null,
       filters1: null,
       loading1: true,
-      loading2: true
+      loading2: true,
+      printRFIDDialog: false,
+      allInfo: null
     }
   },
   created() {
     this.initFilters1()
   },
   mounted() {
-    this.selectAll()
+    this.selectAlready()
   },
   methods: {
     initFilters1() {
@@ -334,7 +364,7 @@ export default {
         year: "numeric"
       })
     },
-    async selectAll() {
+    async selectAlready() {
       const data = await ylRequest.request({
         url: "eme/selectAlready",
         method: "GET",
@@ -375,7 +405,46 @@ export default {
           life: 3000
         })
       }
-      this.selectAll()
+      this.selectAlready()
+    },
+    async printRFID(data) {
+      this.getAllInfo(data)
+      this.printRFIDDialog = true
+    },
+    async getAllInfo(data) {
+      const info = await ylRequest.request({
+        url: "eme/getAllInfo",
+        method: "POST",
+        data: data,
+        withCredentials: true
+      })
+      this.allInfo = info.data
+      const code = info.code
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+    },
+    hideDialog() {
+      this.printRFIDDialog = false
     }
   }
 }

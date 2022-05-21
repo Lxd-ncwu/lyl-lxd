@@ -251,7 +251,7 @@ export default {
     this.initFilters1()
   },
   mounted() {
-    this.selectAll()
+    this.selectAccept()
   },
   methods: {
     initFilters1() {
@@ -323,7 +323,7 @@ export default {
         year: "numeric"
       })
     },
-    async selectAll() {
+    async selectAccept() {
       const data = await ylRequest.request({
         url: "eme/selectAccept",
         method: "GET",
@@ -334,38 +334,6 @@ export default {
       this.customer1.forEach((customer) => (customer.date = new Date(customer.date)))
       this.loading2 = false
     }
-    // async materialAccept(data) {
-    //   const info = await ylRequest.request({
-    //     url: "eme/materialAccept",
-    //     method: "POST",
-    //     data: data,
-    //     withCredentials: true
-    //   })
-    //   const code = info.code
-    //   if (code === 2) {
-    //     this.$toast.add({
-    //       severity: "success",
-    //       summary: "success",
-    //       detail: data.message,
-    //       life: 3000
-    //     })
-    //   } else if (code === 0) {
-    //     this.$toast.add({
-    //       severity: "null",
-    //       summary: "null",
-    //       detail: data.message,
-    //       life: 3000
-    //     })
-    //   } else {
-    //     this.$toast.add({
-    //       severity: "failure",
-    //       summary: "failure",
-    //       detail: data.message,
-    //       life: 3000
-    //     })
-    //   }
-    //   this.selectAll()
-    // }
   }
 }
 </script>
