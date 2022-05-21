@@ -48,8 +48,8 @@
               </span>
             </div>
           </template>
-          <template #empty> 没有符合条件的记录 </template>
-          <template #loading> 正在加载 请稍后 </template>
+          <template #empty> 没有符合条件的记录</template>
+          <template #loading> 正在加载 请稍后</template>
           <Column field="emeNo" header="编号" style="min-width: 12rem">
             <template #body="{ data }">
               {{ data.emeNo }}
@@ -232,15 +232,11 @@
           <Column headerStyle="min-width:10rem;">
             <template #body="{ data }">
               <Button
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
+                icon="pi pi-check"
+                class="p-button-success mr-2"
                 @click="materialAccept(data)"
               />
-              <Button
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
-                @click="materialAccept(data)"
-              />
+              <Button icon="pi pi-print" class="p-button-danger" @click="printRFID(data)" />
             </template>
           </Column>
         </DataTable>
@@ -252,6 +248,7 @@
 <script>
 import { FilterMatchMode, FilterOperator } from "primevue/api"
 import ylRequest from "@/service"
+
 export default {
   data() {
     return {

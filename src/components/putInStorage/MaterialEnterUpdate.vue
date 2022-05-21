@@ -152,7 +152,7 @@
           </Column>
           <Column
             field="emePriceUnit"
-            header="单价"
+            header="单价：元"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -174,7 +174,7 @@
           </Column>
           <Column
             field="emePriceCount"
-            header="总价"
+            header="总价：元"
             :sortable="true"
             headerStyle="width:14%; min-width:8rem;"
           >
@@ -207,11 +207,6 @@
           </Column>
           <Column headerStyle="min-width:10rem;">
             <template #body="slotProps">
-              <Button
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
-                @click="editProduct(slotProps.data)"
-              />
               <Button
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success mr-2"
@@ -378,6 +373,7 @@
               required="true"
               autofocus
               :class="{ 'p-invalid': submitted && !product.emePriceUnit }"
+              placeholder="单位：人民币￥"
             />
             <small class="p-invalid" v-if="submitted && !product.emePriceUnit">单价不能为空</small>
           </div>
