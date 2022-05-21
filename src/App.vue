@@ -191,17 +191,17 @@ export default {
       ]
     }
   },
-  // 为方便调试，关闭路由导航守卫
-  // async beforeRouteEnter() {
-  //   const data = await ylRequest.request({
-  //     url: "/check_token",
-  //     method: "GET"
-  //   })
-  //   const code = data.code
-  //   if (code !== 0) {
-  //     return "/notoken"
-  //   }
-  // },
+  async beforeRouteEnter() {
+    const data = await ylRequest.request({
+      url: "/login/checkToken",
+      method: "GET",
+      withCredentials: true
+    })
+    const code = data.code
+    if (code !== 2) {
+      return "/notoken"
+    }
+  },
   watch: {
     $route() {
       this.menuActive = false

@@ -26,34 +26,27 @@
 
           <div class="w-full md:w-10 mx-auto">
             <InputText
-              id="email1"
-              v-model="phone"
+              id="email"
+              v-model="email"
               type="text"
               class="w-full mb-3"
-              placeholder="手机号"
+              placeholder="邮箱"
               style="padding: 1rem"
             />
-
-            <Password
-              id="password1"
-              v-model="password"
-              placeholder="密码"
-              :toggleMask="true"
+            <Button label="获取验证码" class="w-full p-3 text-xl" @click="createCode"></Button>
+            <InputText
+              id="verifyCode"
+              v-model="verifyCode"
+              placeholder="验证码"
+              type="text"
               class="w-full mb-3"
-              inputClass="w-full"
-              inputStyle="padding:1rem"
-            ></Password>
-
+              style="padding: 1rem"
+            ></InputText>
             <div class="flex align-items-center justify-content-between mb-5">
               <div class="flex align-items-center">
-                <Checkbox id="rememberme1" v-model="checked" :binary="true" class="mr-2"></Checkbox>
-                <label for="rememberme1">记住我</label>
+                <Checkbox id="rememberme" v-model="checked" :binary="true" class="mr-2"></Checkbox>
+                <label for="rememberme">记住我</label>
               </div>
-              <a
-                class="font-medium no-underline ml-2 text-right cursor-pointer"
-                style="color: var(--primary-color)"
-                >忘记密码？</a
-              >
             </div>
             <Button label="登录" class="w-full p-3 text-xl" @click="login"></Button>
           </div>
@@ -77,16 +70,17 @@ export default {
   components: {
     Toast
   },
-  // async beforeRouteEnter(to, from) {
-  //   const data = await ylRequest.request({
-  //     url: "/check_token",
-  //     method: "GET"
-  //   })
-  //   const code = data.code
-  //   if (code === 0) {
-  //     return "/index"
-  //   }
-  // },
+  async beforeRouteEnter(to, from) {
+    const data = await ylRequest.request({
+      url: "/login/checkToken",
+      method: "GET",
+      withCredentials: true
+    })
+    const code = data.code
+    if (code === 2) {
+      return "/index"
+    }
+  },
   computed: {
     logoColor() {
       if (this.$appState.darkTheme) return "white"
@@ -94,19 +88,51 @@ export default {
     }
   },
   methods: {
-    async login() {
+    async createCode() {
       const data = await ylRequest.request({
-        url: "/login/do_login",
-        method: "POST",
-        data: {
-          phone: this.phone,
-          password: this.password
+        url: "/login/createCode",
+        method: "GET",
+        params: {
+          email: this.email
         },
         withCredentials: true
       })
       const code = data.code
-      // console.log(data)
-      if (code === 0) {
+      if (code === 2) {
+        this.$toast.add({
+          severity: "success",
+          summary: "success",
+          detail: data.message,
+          life: 3000
+        })
+      } else if (code === 0) {
+        this.$toast.add({
+          severity: "null",
+          summary: "null",
+          detail: data.message,
+          life: 3000
+        })
+      } else {
+        this.$toast.add({
+          severity: "failure",
+          summary: "failure",
+          detail: data.message,
+          life: 3000
+        })
+      }
+    },
+    async login() {
+      const data = await ylRequest.request({
+        url: "/login/login",
+        method: "POST",
+        data: {
+          email: this.email,
+          verifyCode: this.verifyCode
+        },
+        withCredentials: true
+      })
+      const code = data.code
+      if (code === 2) {
         this.$router.push("/index")
       }
     }

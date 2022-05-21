@@ -241,20 +241,6 @@
           </Column>
         </DataTable>
 
-        <!--        <Card v-model:visible="printRFIDDialog">-->
-        <!--          <template v-slot:title>-->
-        <!--            <div class="flex align-items-center justify-content-between mb-0">-->
-        <!--              <h5>电子标签信息</h5>-->
-        <!--              <Button icon="pi pi-plus" class="p-button-text" @click="toggle" />-->
-        <!--            </div>-->
-        <!--            <Menu id="config_menu" ref="menu" :model="cardMenu" :popup="true" />-->
-        <!--          </template>-->
-
-        <!--          <template v-slot:content>-->
-        <!--            <p class="line-height-3 m-0">{{}}</p>-->
-        <!--          </template>-->
-        <!--        </Card>-->
-
         <Dialog
           v-model:visible="printRFIDDialog"
           :style="{ width: '450px' }"
