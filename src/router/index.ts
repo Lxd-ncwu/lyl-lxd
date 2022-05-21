@@ -112,14 +112,9 @@ const routes = [
         component: () => import("@/components/putInStorage/MaterialAccept.vue")
       },
       {
-        path: "/entryList",
-        name: "entryList",
-        component: () => import("@/components/putInStorage/EntryList.vue")
-      },
-      {
-        path: "/rfid",
-        name: "rfid",
-        component: () => import("@/components/putInStorage/RFID.vue")
+        path: "/showAcceptMaterial",
+        name: "showAcceptMaterial",
+        component: () => import("@/components/putInStorage/ShowAcceptMaterial.vue")
       },
       {
         path: "/storage",

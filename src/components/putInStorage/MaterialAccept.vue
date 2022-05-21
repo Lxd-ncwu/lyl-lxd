@@ -236,6 +236,11 @@
                 class="p-button-rounded p-button-success mr-2"
                 @click="materialAccept(data)"
               />
+              <Button
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success mr-2"
+                @click="materialAccept(data)"
+              />
             </template>
           </Column>
         </DataTable>

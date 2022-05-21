@@ -88,13 +88,12 @@ export default {
               icon: "pi pi-fw pi-bookmark",
               items: [
                 {
-                  label: "物资入库信息更改",
+                  label: "物资验收信息归集",
                   icon: "pi pi-fw pi-bookmark",
                   to: "/materialEnterUpdate"
                 },
-                { label: "生成电子标签", icon: "pi pi-fw pi-bookmark", to: "/rfid" },
-                { label: "入库物资验收", icon: "pi pi-fw pi-bookmark", to: "/materialAccept" },
-                { label: "生成入库单", icon: "pi pi-fw pi-bookmark", to: "/entryList" }
+                { label: "物资验收", icon: "pi pi-fw pi-bookmark", to: "/materialAccept" },
+                { label: "查看仓储物资", icon: "pi pi-fw pi-bookmark", to: "/showAcceptMaterial" }
               ]
             }
           ]

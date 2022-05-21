@@ -229,15 +229,6 @@
               />
             </template>
           </Column>
-          <Column headerStyle="min-width:10rem;">
-            <template #body="{ data }">
-              <Button
-                icon="pi pi-pencil"
-                class="p-button-rounded p-button-success mr-2"
-                @click="materialAccept(data)"
-              />
-            </template>
-          </Column>
         </DataTable>
       </div>
     </div>

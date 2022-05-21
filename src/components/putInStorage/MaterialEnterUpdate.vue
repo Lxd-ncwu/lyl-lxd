@@ -212,6 +212,11 @@
                 class="p-button-rounded p-button-success mr-2"
                 @click="editProduct(slotProps.data)"
               />
+              <Button
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success mr-2"
+                @click="editProduct(slotProps.data)"
+              />
             </template>
           </Column>
         </DataTable>
